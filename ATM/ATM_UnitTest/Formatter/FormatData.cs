@@ -26,6 +26,12 @@ namespace ATM_UnitTest
             _uut = new Formatter(_fakeTransponderReceiver);
         }
 
-
+        [Test]
+        public void FormatData_Tag_ManualInputTest_ExpectedTrue()
+        {
+            string data = "MAT218;1000;20000;10000;2019070312061010123”";
+            FormattedData result =_uut.FormatData(data);
+            Assert.AreEqual(result.Tag, "MAT218");
+        }
     }
 }

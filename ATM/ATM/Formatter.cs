@@ -38,7 +38,7 @@ namespace ATM
             }
         }
 
-        private FormattedData FormatData(string data)
+        public FormattedData FormatData(string data)
         {
             string[] inputFields;
             inputFields = data.Split(';');
