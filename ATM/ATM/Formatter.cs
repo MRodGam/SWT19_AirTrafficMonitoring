@@ -11,6 +11,8 @@ namespace ATM
     public class Formatter
     {
         private ITransponderReceiver receiver;
+        public List<FormattedData> FormattedDataList; // Should be deleted, this is only for the initial print test
+        public FormattedData currentData { get; set; }
 
         // Using constructor injection for dependency/ies
         public Formatter(ITransponderReceiver receiver)
@@ -22,13 +24,23 @@ namespace ATM
             this.receiver.TransponderDataReady += ReceiverOnTransponderDataReady;
         }
 
-        private void ReceiverOnTransponderDataReady(object sender, RawTransponderDataEventArgs e) // Vores program starter her, vi må godt ændre i koden herfra
+        private void ReceiverOnTransponderDataReady(object sender, RawTransponderDataEventArgs e) 
         {
             // Just display data
             foreach (var data in e.TransponderData)
             {
-                System.Console.WriteLine($"Transponderdata {data}");
+                FormatData(data);
+                System.Console.WriteLine("Transponderdata Tag: {0} Placement: {1},{2} Altitude: {3}, Timestamp: {4}", FormatData(data).Tag, FormatData(data).XCoordinate, FormatData(data).YCoordinate, FormatData(data).Altitude, FormatData(data).TimeStamp);
             }
+        }
+
+        private FormattedData FormatData(string data)
+        {
+            string[] inputFields;
+            inputFields = data.Split(';');
+            currentData = new FormattedData(Convert.ToString(inputFields[0]), Convert.ToInt32(inputFields[1]), Convert.ToInt32(inputFields[2]), Convert.ToInt32(inputFields[3]), Convert.ToString(inputFields[4]),"",0);
+
+            return currentData;
         }
     }
 }
