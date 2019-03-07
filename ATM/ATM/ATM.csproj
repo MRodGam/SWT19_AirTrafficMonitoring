@@ -44,8 +44,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AirTrafficController.cs" />
     <Compile Include="FormattedData.cs" />
+    <Compile Include="FormattedDataEventArgs.cs" />
     <Compile Include="Formatter.cs" />
+    <Compile Include="IAirTrafficController.cs" />
+    <Compile Include="IFormatter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

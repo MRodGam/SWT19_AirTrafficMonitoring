@@ -8,11 +8,14 @@ using TransponderReceiver;
 
 namespace ATM
 {
-    public class Formatter
+    public class Formatter : IFormatter
     {
         private ITransponderReceiver receiver;
         public List<FormattedData> FormattedDataList; // Should be deleted, this is only for the initial print test
         public FormattedData currentData { get; set; }
+        public event EventHandler<FormattedDataEventArgs> FormattedDataReady;
+        private FormattedDataEventArgs args;
+
 
         // Using constructor injection for dependency/ies
         public Formatter(ITransponderReceiver receiver)
@@ -29,8 +32,9 @@ namespace ATM
             // Just display data
             foreach (var data in e.TransponderData)
             {
-                FormatData(data);
-                System.Console.WriteLine("Transponderdata Tag: {0} Placement: {1},{2} Altitude: {3}, Timestamp: {4}", FormatData(data).Tag, FormatData(data).XCoordinate, FormatData(data).YCoordinate, FormatData(data).Altitude, FormatData(data).TimeStamp);
+                currentData = FormatData(data);
+                //System.Console.WriteLine("Transponderdata Tag: {0} Placement: {1},{2} Altitude: {3}, Timestamp: {4}", FormatData(data).Tag, FormatData(data).XCoordinate, FormatData(data).YCoordinate, FormatData(data).Altitude, FormatData(data).TimeStamp);
+                FormattedDataReady.Invoke(sender,new FormattedDataEventArgs(currentData));
             }
         }
 
@@ -42,5 +46,8 @@ namespace ATM
 
             return currentData;
         }
+
+
+
     }
 }

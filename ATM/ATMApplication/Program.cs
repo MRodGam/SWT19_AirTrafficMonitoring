@@ -17,7 +17,8 @@ namespace ATMApplication
             var receiver = TransponderReceiverFactory.CreateTransponderDataReceiver();
 
             // Dependency injection with the real TDR
-            var system = new Formatter(receiver);
+            var formatter = new Formatter(receiver);
+            var system = new AirTrafficController(formatter);
 
             // Let the real TDR execute in the background
             while (true)
