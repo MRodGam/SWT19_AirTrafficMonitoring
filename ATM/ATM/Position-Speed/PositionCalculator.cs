@@ -8,6 +8,9 @@ namespace ATM
 {
     class PositionCalculator
     {
-        public string CalculatePosition;
+        public string CalculatePosition(FormattedData currentData, FormattedData oldData)
+        {
+            
+        }
     }
 }

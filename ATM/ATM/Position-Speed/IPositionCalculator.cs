@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    interface IPositionCalculator
+    public interface IPositionCalculator
     {
+        string CalculatePosition(FormattedData currentData, FormattedData oldData);
     }
 }
