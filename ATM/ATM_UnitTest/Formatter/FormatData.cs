@@ -50,7 +50,10 @@ namespace ATM_UnitTest
 
             // Assert something here or use an NSubstitute Received
             Assert.AreEqual(result.Tag, "ATR423");
-
+            Assert.AreEqual(result.XCoordinate, 39045);
+            Assert.AreEqual(result.YCoordinate, 12932);
+            Assert.AreEqual(result.Altitude, 14000);
+            Assert.AreEqual(result.TimeStamp, "20151006213456789");
         }
     }
 }
