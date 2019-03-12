@@ -12,8 +12,6 @@ namespace ATM
         private IFormatter receiver;
         public FormattedData CurrentData { get; private set; }
         public FormattedData OldData { get; private set; }
-        public List<FormattedData> AircraftsInAirspace;
-
 
         public AirTrafficController(IFormatter receiver)
         {
@@ -23,7 +21,6 @@ namespace ATM
             // Attach to the event of the real or the fake TDR
             this.receiver.FormattedDataReady += ReceiverOnFormattedDataReady;
 
-            AircraftsInAirspace = new List<FormattedData>();
         }
 
         private void ReceiverOnFormattedDataReady(object sender, FormattedDataEventArgs e)
@@ -36,7 +33,7 @@ namespace ATM
 
         //private void HandleNewData(FormattedData currentData)
         //{
-        //    if (separationCalculator.IsAircraftInAirspace(currentData) == true)
+        //    if (separationCalculator.EvaluateData(currentData) == true)
         //    {
         //        foreach (FormattedData aircraft in AircraftsInAirspace)
         //        {
@@ -46,10 +43,11 @@ namespace ATM
         //            }
         //        }
 
-        //        currentData.Speed = speedCalculator.CalcuateSpeed(currentData.XCoordinate, currentData.YCoordinate, OldData.XCoordinate, OldData.YCoordinate);
-        //        currentData.CompassCourse = courseCalculator.CalculateCourse(currentData.XCoordinate, currentData.YCoordinate, OldData.XCoordinate, OldData.YCoordinate);
+        //        currentData.Speed = speedCalculator.CalcuateSpeed(currentData, oldData);
+        //        currentData.CompassCourse = courseCalculator.CalculateCourse(currentData, oldData);
         //        separationCalculator.Remove(OldData);
         //        separationCalculator.Add(currentData);
+
 
         //    }
         //    else

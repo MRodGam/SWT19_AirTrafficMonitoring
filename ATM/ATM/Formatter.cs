@@ -11,7 +11,6 @@ namespace ATM
     public class Formatter : IFormatter
     {
         private ITransponderReceiver receiver;
-        public List<FormattedData> FormattedDataList; // Should be deleted, this is only for the initial print test
         public FormattedData currentData { get; set; }
         public string rawData { get; private set; }
         public event EventHandler<FormattedDataEventArgs> FormattedDataReady;
