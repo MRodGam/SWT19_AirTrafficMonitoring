@@ -12,8 +12,6 @@ namespace ATM
         private IFormatter receiver;
         public FormattedData CurrentData { get; private set; }
         public FormattedData OldData { get; private set; }
-        public List<FormattedData> AircraftsInAirspace;
-
 
         public AirTrafficController(IFormatter receiver)
         {
@@ -23,7 +21,6 @@ namespace ATM
             // Attach to the event of the real or the fake TDR
             this.receiver.FormattedDataReady += ReceiverOnFormattedDataReady;
 
-            AircraftsInAirspace = new List<FormattedData>();
         }
 
         private void ReceiverOnFormattedDataReady(object sender, FormattedDataEventArgs e)
@@ -31,12 +28,12 @@ namespace ATM
             CurrentData = e.FormattedData;
             System.Console.WriteLine("Transponderdata Tag: {0} Placement: {1},{2} Altitude: {3}, Timestamp: {4}", CurrentData.Tag, CurrentData.XCoordinate,
                 CurrentData.YCoordinate, CurrentData.Altitude, CurrentData.TimeStamp);
-            //HandleNewData(CurrentData);
+            //HandleNewData(e.FormattedData);
         }
 
         //private void HandleNewData(FormattedData currentData)
         //{
-        //    if (separationCalculator.IsAircraftInAirspace() == true)
+        //    if (separationCalculator.EvaluateData(currentData) == true)
         //    {
         //        foreach (FormattedData aircraft in AircraftsInAirspace)
         //        {
@@ -46,14 +43,15 @@ namespace ATM
         //            }
         //        }
 
-        //        currentData.Speed = speedCalculator.CalcuateSpeed(currentData);
-        //        currentData.CompassCourse = courseCalculator.CalculateCourse(currentData);
-        //        AircraftsInAirspace.Remove(OldData);
-        //        AircraftsInAirspace.Add(currentData);
-                
+        //        currentData.Speed = speedCalculator.CalcuateSpeed(currentData, oldData);
+        //        currentData.CompassCourse = courseCalculator.CalculateCourse(currentData, oldData);
+        //        separationCalculator.Remove(OldData);
+        //        separationCalculator.Add(currentData);
+
+
         //    }
         //    else
-        //        AircraftsInAirspace.Add(currentData);
+        //        separationCalculator.Add(currentData);
         //}
     }
 }
