@@ -8,7 +8,6 @@ using NUnit.Framework;
 using NSubstitute;
 using ATM;
 using TransponderReceiver;
-using System.Data;
 
 namespace ATM_UnitTest
 {
