@@ -8,5 +8,6 @@ namespace ATM
 {
     class PositionCalculator
     {
+        public string CalculatePosition 
     }
 }
