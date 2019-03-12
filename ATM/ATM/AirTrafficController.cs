@@ -10,10 +10,15 @@ namespace ATM
     public class AirTrafficController
     {
         private IFormatter receiver;
-        public FormattedData CurrentData { get; private set; }
-        public FormattedData OldData { get; private set; }
+        private ISeperationCalculator _seperationCalculator;
+        private IPositionCalculator _positionCalculator;
+        private ISpeedCalculator _speedCalculator;
+        private IRender _render;
 
-        public AirTrafficController(IFormatter receiver, ISeperationCalculator,IPositionCalculator,ISpeedCalculator,IRender)
+        public FormattedData CurrentData { get; private set; }
+        public FormattedData oldData { get; private set; }
+
+        public AirTrafficController(IFormatter receiver, ISeperationCalculator seperationCalculator,IPositionCalculator positionCalculator,ISpeedCalculator speedCalculator,IRender render)
         {
             // This will store the real or the fake transponder data receiver
             this.receiver = receiver;
@@ -21,6 +26,10 @@ namespace ATM
             // Attach to the event of the real or the fake TDR
             this.receiver.FormattedDataReady += ReceiverOnFormattedDataReady;
 
+            _seperationCalculator = seperationCalculator;
+            _positionCalculator = positionCalculator;
+            _speedCalculator = speedCalculator;
+            _render = render;
         }
 
         private void ReceiverOnFormattedDataReady(object sender, FormattedDataEventArgs e)
@@ -31,25 +40,25 @@ namespace ATM
 
         private void HandleNewData(FormattedData currentData)
         {
-            if (separationCalculator.EvaluateData(currentData) == true)
+            if (_seperationCalculator.EvaluateData(currentData) == true)
             {
-                foreach (FormattedData aircraft in AircraftsInAirspace)
+                foreach (FormattedData aircraft in _seperationCalculator.GetAircraftList())
                 {
                     if (currentData.Tag == aircraft.Tag)
                     {
-                        OldData = aircraft;
+                        oldData = aircraft;
                     }
                 }
 
-                currentData.Speed = speedCalculator.CalcuateSpeed(currentData, oldData);
-                currentData.CompassCourse = courseCalculator.CalculateCourse(currentData, oldData);
-                separationCalculator.Remove(OldData);
-                separationCalculator.Add(currentData);
+                currentData.Speed = _speedCalculator.CalcuateSpeed(currentData, oldData);
+                currentData.CompassCourse = _positionCalculator.CalculateCourse(currentData, oldData);
+                _seperationCalculator.Remove(oldData);
+                _seperationCalculator.Add(currentData);
 
 
             }
             else
-                separationCalculator.Add(currentData);
+                _seperationCalculator.Add(currentData);
         }
     }
 }
