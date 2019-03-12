@@ -39,16 +39,17 @@ namespace ATM_UnitTest
         {
             // Setup test data
             FormattedData result =null;
-            List<string> testData = new List<string>();
+            List<string> testData = new List<string>(); // Creates list with manual value that is send through trigger from TransponderData to Formatter.
             string value = "ATR423;39045;12932;14000;20151006213456789";
+
             testData.Add(value);
-            _uut.FormattedDataReady += (o, e) => { result = e.FormattedData; };
+            _uut.FormattedDataReady += (o, e) => { result = e.FormattedData; }; //Simulates formatted data ready event
 
             // Act: Trigger the fake object to execute event invocation
             _fakeTransponderReceiver.TransponderDataReady
-                += Raise.EventWith(this, new RawTransponderDataEventArgs(testData));
+               += Raise.EventWith(this, new RawTransponderDataEventArgs(testData));
 
-            // Assert something here or use an NSubstitute Received
+            // Assert that result and expected are equal
             Assert.AreEqual(result.Tag, "ATR423");
             Assert.AreEqual(result.XCoordinate, 39045);
             Assert.AreEqual(result.YCoordinate, 12932);
