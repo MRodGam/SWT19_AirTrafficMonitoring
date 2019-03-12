@@ -15,7 +15,7 @@ namespace ATM
         public List<FormattedData> AircraftsInAirspace;
 
 
-        public AirTrafficController(IFormatter receiver,)
+        public AirTrafficController(IFormatter receiver)
         {
             // This will store the real or the fake transponder data receiver
             this.receiver = receiver;
@@ -29,31 +29,31 @@ namespace ATM
         private void ReceiverOnFormattedDataReady(object sender, FormattedDataEventArgs e)
         {
             CurrentData = e.FormattedData;
-            //System.Console.WriteLine("Transponderdata Tag: {0} Placement: {1},{2} Altitude: {3}, Timestamp: {4}", CurrentData.Tag, CurrentData.XCoordinate,
-            //    CurrentData.YCoordinate, CurrentData.Altitude, CurrentData.TimeStamp);
-            HandleNewData(CurrentData);
+            System.Console.WriteLine("Transponderdata Tag: {0} Placement: {1},{2} Altitude: {3}, Timestamp: {4}", CurrentData.Tag, CurrentData.XCoordinate,
+                CurrentData.YCoordinate, CurrentData.Altitude, CurrentData.TimeStamp);
+            //HandleNewData(CurrentData);
         }
 
-        private void HandleNewData(FormattedData currentData)
-        {
-            if (separationCalculator.IsAircraftInAirspace() == true)
-            {
-                foreach (FormattedData aircraft in AircraftsInAirspace)
-                {
-                    if (currentData.Tag == aircraft.Tag)
-                    {
-                        OldData = aircraft;
-                    }
-                }
+        //private void HandleNewData(FormattedData currentData)
+        //{
+        //    if (separationCalculator.IsAircraftInAirspace() == true)
+        //    {
+        //        foreach (FormattedData aircraft in AircraftsInAirspace)
+        //        {
+        //            if (currentData.Tag == aircraft.Tag)
+        //            {
+        //                OldData = aircraft;
+        //            }
+        //        }
 
-                currentData.Speed = speedCalculator.CalcuateSpeed(currentData);
-                currentData.CompassCourse = courseCalculator.CalculateCourse(currentData);
-                AircraftsInAirspace.Remove(OldData);
-                AircraftsInAirspace.Add(currentData);
+        //        currentData.Speed = speedCalculator.CalcuateSpeed(currentData);
+        //        currentData.CompassCourse = courseCalculator.CalculateCourse(currentData);
+        //        AircraftsInAirspace.Remove(OldData);
+        //        AircraftsInAirspace.Add(currentData);
                 
-            }
-            else
-                AircraftsInAirspace.Add(currentData);
-        }
+        //    }
+        //    else
+        //        AircraftsInAirspace.Add(currentData);
+        //}
     }
 }
