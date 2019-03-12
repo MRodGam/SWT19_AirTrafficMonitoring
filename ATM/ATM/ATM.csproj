@@ -50,7 +50,18 @@
     <Compile Include="Formatter.cs" />
     <Compile Include="IAirTrafficController.cs" />
     <Compile Include="IFormatter.cs" />
+    <Compile Include="ILog.cs" />
+    <Compile Include="IPositionCalculator.cs" />
+    <Compile Include="IRender.cs" />
+    <Compile Include="ISeperationCalculator.cs" />
+    <Compile Include="ISpeedCalculator.cs" />
+    <Compile Include="Log.cs" />
+    <Compile Include="PositionCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Render.cs" />
+    <Compile Include="RenderWithSeperation.cs" />
+    <Compile Include="SeperationCalculator.cs" />
+    <Compile Include="SpeedCalculator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
