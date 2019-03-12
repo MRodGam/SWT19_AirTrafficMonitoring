@@ -31,12 +31,12 @@ namespace ATM
             CurrentData = e.FormattedData;
             System.Console.WriteLine("Transponderdata Tag: {0} Placement: {1},{2} Altitude: {3}, Timestamp: {4}", CurrentData.Tag, CurrentData.XCoordinate,
                 CurrentData.YCoordinate, CurrentData.Altitude, CurrentData.TimeStamp);
-            //HandleNewData(CurrentData);
+            //HandleNewData(e.FormattedData);
         }
 
         //private void HandleNewData(FormattedData currentData)
         //{
-        //    if (separationCalculator.IsAircraftInAirspace() == true)
+        //    if (separationCalculator.IsAircraftInAirspace(currentData) == true)
         //    {
         //        foreach (FormattedData aircraft in AircraftsInAirspace)
         //        {
@@ -46,14 +46,14 @@ namespace ATM
         //            }
         //        }
 
-        //        currentData.Speed = speedCalculator.CalcuateSpeed(currentData);
-        //        currentData.CompassCourse = courseCalculator.CalculateCourse(currentData);
-        //        AircraftsInAirspace.Remove(OldData);
-        //        AircraftsInAirspace.Add(currentData);
-                
+        //        currentData.Speed = speedCalculator.CalcuateSpeed(currentData.XCoordinate, currentData.YCoordinate, OldData.XCoordinate, OldData.YCoordinate);
+        //        currentData.CompassCourse = courseCalculator.CalculateCourse(currentData.XCoordinate, currentData.YCoordinate, OldData.XCoordinate, OldData.YCoordinate);
+        //        separationCalculator.Remove(OldData);
+        //        separationCalculator.Add(currentData);
+
         //    }
         //    else
-        //        AircraftsInAirspace.Add(currentData);
+        //        separationCalculator.Add(currentData);
         //}
     }
 }
