@@ -33,5 +33,25 @@ namespace ATM_UnitTest
             FormattedData result =_uut.FormatData(data);
             Assert.AreEqual(result.Tag, "MAT218");
         }
+
+        [Test]
+        public void TestReception_InputThroughTransponder_ExpectedTrue()
+        {
+            // Setup test data
+            FormattedData result =null;
+            List<string> testData = new List<string>();
+            string value = "ATR423;39045;12932;14000;20151006213456789";
+            testData.Add(value);
+            _uut.FormattedDataReady += (o, e) => { result = e.FormattedData; };
+
+            // Act: Trigger the fake object to execute event invocation
+            _fakeTransponderReceiver.TransponderDataReady
+                += Raise.EventWith(this, new RawTransponderDataEventArgs(testData));
+
+            // Assert something here or use an NSubstitute Received
+            Assert.AreEqual(result.Tag, "ATR423");
+
+        }
     }
 }
+

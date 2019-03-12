@@ -13,6 +13,7 @@ namespace ATM
         private ITransponderReceiver receiver;
         public List<FormattedData> FormattedDataList; // Should be deleted, this is only for the initial print test
         public FormattedData currentData { get; set; }
+        public string rawData { get; private set; }
         public event EventHandler<FormattedDataEventArgs> FormattedDataReady;
         private FormattedDataEventArgs args;
 
@@ -32,9 +33,10 @@ namespace ATM
             // Just display data
             foreach (var data in e.TransponderData)
             {
-                currentData = FormatData(data);
+                rawData = data;
+                currentData = FormatData(rawData);
                 //System.Console.WriteLine("Transponderdata Tag: {0} Placement: {1},{2} Altitude: {3}, Timestamp: {4}", FormatData(data).Tag, FormatData(data).XCoordinate, FormatData(data).YCoordinate, FormatData(data).Altitude, FormatData(data).TimeStamp);
-                FormattedDataReady.Invoke(sender,new FormattedDataEventArgs(currentData));
+                FormattedDataReady?.Invoke(sender,new FormattedDataEventArgs(currentData));
             }
         }
 
@@ -42,7 +44,8 @@ namespace ATM
         {
             string[] inputFields;
             inputFields = data.Split(';');
-            currentData = new FormattedData(Convert.ToString(inputFields[0]), Convert.ToInt32(inputFields[1]), Convert.ToInt32(inputFields[2]), Convert.ToInt32(inputFields[3]), Convert.ToString(inputFields[4]),"",0);
+            currentData = new FormattedData(Convert.ToString(inputFields[0]), Convert.ToInt32(inputFields[1]),
+                Convert.ToInt32(inputFields[2]), Convert.ToInt32(inputFields[3]), Convert.ToString(inputFields[4]),"",0);
 
             return currentData;
         }

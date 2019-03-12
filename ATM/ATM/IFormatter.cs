@@ -8,7 +8,10 @@ namespace ATM
 {
     public interface IFormatter
     {
+        FormattedData currentData { get; set; }
+
         event EventHandler<FormattedDataEventArgs> FormattedDataReady;
         FormattedData FormatData(string data);
+   
     }
 }

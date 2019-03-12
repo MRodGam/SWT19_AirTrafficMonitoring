@@ -24,7 +24,8 @@ namespace ATM
         private void ReceiverOnFormattedDataReady(object sender, FormattedDataEventArgs e)
         {
             CurrentData = e.FormattedData;
-            System.Console.WriteLine("Transponderdata Tag: {0} Placement: {1},{2} Altitude: {3}, Timestamp: {4}", CurrentData.Tag, CurrentData.XCoordinate, CurrentData.YCoordinate, CurrentData.Altitude, CurrentData.TimeStamp);
+            System.Console.WriteLine("Transponderdata Tag: {0} Placement: {1},{2} Altitude: {3}, Timestamp: {4}", CurrentData.Tag, CurrentData.XCoordinate,
+                CurrentData.YCoordinate, CurrentData.Altitude, CurrentData.TimeStamp);
         }
     }
 }
