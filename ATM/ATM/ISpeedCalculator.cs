@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    public interface ILog
+    public interface ISpeedCalculator
     {
-        void LogSeperation(FormattedData formattedData);
+        double CalculateSpeed(FormattedData currentData, FormattedData oldData);
     }
 }

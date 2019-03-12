@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    interface IRender
+    public interface IRender
     {
         void PrintData(FormattedData formattedData);
     }
