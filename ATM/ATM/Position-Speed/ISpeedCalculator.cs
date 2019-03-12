@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    interface ISpeedCalculator
+    public interface ISpeedCalculator
     {
+        double CalculateSpeed(FormattedData currentData, FormattedData oldData);
     }
 }
