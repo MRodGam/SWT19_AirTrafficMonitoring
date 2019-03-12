@@ -15,9 +15,9 @@ namespace ATM
         public int Altitude { get; set; }
         public string TimeStamp { get; set; }
         public string CompassCourse { get; set; }
-        public int Speed { get; set; }
+        public double Speed { get; set; }
 
-        public FormattedData(string tag, int xcoordinate, int ycoordinate, int altitude, string timestamp, string compasscourse, int speed)
+        public FormattedData(string tag, int xcoordinate, int ycoordinate, int altitude, string timestamp, string compasscourse, double speed)
         {
             Tag = tag;
             XCoordinate = xcoordinate;

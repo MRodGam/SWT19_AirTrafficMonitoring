@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    interface ISeperationCalculator
+    public interface ISeperationCalculator
     {
         bool EvaluateData(FormattedData formattedData);
     }
