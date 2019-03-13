@@ -11,7 +11,65 @@ using TransponderReceiver;
 
 namespace ATM_UnitTest
 {
+    [TestFixture]
     class EvaluateData
     {
+        private ISeperationCalculator _uut;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _uut = new SeperationCalculator();
+        }
+
+        [Test]
+        public void EvaluateData_AircraftIsInAirspace_ExpectedTrue()
+        {
+            FormattedData test1 = new FormattedData("test1", 1, 1, 1, 1200, "nord", 10);
+            _uut.Add(test1);
+
+            FormattedData test2 = new FormattedData("test2", 2, 2, 2, 2200, "syd", 22);
+            _uut.Add(test2);
+
+            FormattedData test3 = new FormattedData("test3", 3, 3, 3, 3300, "øst", 30);
+            _uut.Add(test3);
+
+            Assert.That(_uut.EvaluateData(test3)==true);
+        }
+
+        [Test]
+        public void EvaluateData_AircraftIsNotInAirspace_ExpectedFalse()
+        {
+            FormattedData test1 = new FormattedData("test1", 1, 1, 1, 1200, "nord", 10);
+            _uut.Add(test1);
+
+            FormattedData test2 = new FormattedData("test2", 2, 2, 2, 2200, "syd", 20);
+            _uut.Add(test2);
+
+            FormattedData test3 = new FormattedData("test3", 3, 3, 3, 3300, "øst", 30);
+            _uut.Add(test3);
+
+            FormattedData test4 = new FormattedData("test4", 4, 4, 4, 4400, "vest", 40);
+
+            Assert.That(_uut.EvaluateData(test4) == false);
+        }
+
+        [Test]
+        public void EvaluateData_AircraftIsInAirspaceWithDifferentPosition_ExpectedTrue()
+        {
+            FormattedData test1 = new FormattedData("test1", 1, 1, 1, 1200, "nord", 10);
+            _uut.Add(test1);
+
+            FormattedData test2 = new FormattedData("test2", 2, 2, 2, 2200, "syd", 20);
+            _uut.Add(test2);
+
+            FormattedData test3 = new FormattedData("test3", 3, 3, 3, 3300, "øst", 30);
+            _uut.Add(test3);
+
+            FormattedData test1_new = new FormattedData("test1", 4, 4, 4, 4400, "vest", 40);
+
+            Assert.That(_uut.EvaluateData(test1_new) == true);
+        }
+
     }
 }

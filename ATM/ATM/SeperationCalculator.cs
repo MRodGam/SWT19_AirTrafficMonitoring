@@ -30,9 +30,19 @@ namespace ATM
             return AircraftsInAirspace;
         }
 
-        public void EvaluateData(FormattedData formattedData)
+        public bool EvaluateData(FormattedData formattedData)
         {
+            bool result = false;
 
+            foreach (FormattedData aircraft in GetAircraftList())
+            {
+                if (formattedData.Tag ==aircraft.Tag)
+                {
+                    result = true;
+                }
+            }
+
+            return result;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace ATM
 {
     public interface ISeperationCalculator
     {
-        void EvaluateData(FormattedData formattedData);
+        bool EvaluateData(FormattedData formattedData);
         void Add(FormattedData currentData);
         void Remove(FormattedData oldData);
         List<FormattedData> GetAircraftList();

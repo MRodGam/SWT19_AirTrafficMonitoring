@@ -33,7 +33,7 @@ namespace ATM_UnitTest
             _uut.Add(test2);
 
             FormattedData test3 = new FormattedData("test3", 3, 3, 3, 3300, "øst", 30);
-            _uut.Add(test2);
+            _uut.Add(test3);
 
             Assert.AreEqual(_uut.GetAircraftList().Count,3);
         }
