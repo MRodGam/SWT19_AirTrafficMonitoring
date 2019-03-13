@@ -54,11 +54,12 @@ namespace ATM
                 currentData.CompassCourse = _positionCalculator.CalculateCourse(currentData, oldData);
                 _seperationCalculator.Remove(oldData);
                 _seperationCalculator.Add(currentData);
-
-
             }
             else
+            {
                 _seperationCalculator.Add(currentData);
+                _seperationCalculator.EvaluateData(currentData);
+            }             
         }
     }
 }
