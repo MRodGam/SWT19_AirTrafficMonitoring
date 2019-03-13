@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    public class SpeedCalculator
+    public class SpeedCalculator : ISpeedCalculator
     {
         public double CalculateSpeed(FormattedData currentData, FormattedData oldData)
         {
-            
+            return 0;
         }
     }
 }

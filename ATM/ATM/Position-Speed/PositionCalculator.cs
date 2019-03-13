@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    class PositionCalculator
+    public class PositionCalculator : IPositionCalculator
     {
-        //public string CalculatePosition(FormattedData currentData, FormattedData oldData)
-        //{
-            
-        //}
+        public string CalculatePosition(FormattedData currentData, FormattedData oldData)
+        {
+            return "";
+        }
     }
 }
