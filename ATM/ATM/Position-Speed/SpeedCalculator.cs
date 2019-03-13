@@ -8,9 +8,9 @@ namespace ATM
 {
     public class SpeedCalculator
     {
-        //public double CalculateSpeed(FormattedData currentData, FormattedData oldData)
-        //{
-
-        //}
+        public double CalculateSpeed(FormattedData currentData, FormattedData oldData)
+        {
+            
+        }
     }
 }
