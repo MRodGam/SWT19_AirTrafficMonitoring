@@ -10,7 +10,7 @@ namespace ATM
     {
         public double CalculateSpeed(FormattedData currentData, FormattedData oldData)
         {
-
+            
         }
     }
 }
