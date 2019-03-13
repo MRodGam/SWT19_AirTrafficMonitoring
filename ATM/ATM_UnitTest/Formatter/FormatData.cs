@@ -29,7 +29,7 @@ namespace ATM_UnitTest
         [Test]
         public void FormatData_Tag_ManualInputTest_ExpectedTrue()
         {
-            string data = "MAT218;1000;20000;10000;2019070312061010123”";
+            string data = "MAT218;1000;20000;10000;2019070312061010123";
             FormattedData result =_uut.FormatData(data);
             Assert.AreEqual(result.Tag, "MAT218");
         }
@@ -54,7 +54,9 @@ namespace ATM_UnitTest
             Assert.AreEqual(result.XCoordinate, 39045);
             Assert.AreEqual(result.YCoordinate, 12932);
             Assert.AreEqual(result.Altitude, 14000);
-            Assert.AreEqual(result.TimeStamp, "20151006213456789");
+            Assert.AreEqual(result.TimeStamp, 20151006213456789);
+            Assert.AreEqual(result.CompassCourse,"");
+            Assert.AreEqual(result.Speed,0);
         }
     }
 }

@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    class RenderWithSeperation
+    public class RenderWithSeperation : IRender
     {
+        public void PrintData(FormattedData formattedData)
+        {
+
+        }
     }
 }

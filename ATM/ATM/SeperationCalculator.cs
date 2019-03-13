@@ -6,7 +6,33 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    class SeperationCalculator
+    public class SeperationCalculator : ISeperationCalculator
     {
+        public List<FormattedData> AircraftsInAirspace;
+
+        public SeperationCalculator()
+        {
+            AircraftsInAirspace = new List<FormattedData>();
+        }
+
+        public void Add(FormattedData currentData)
+        {
+            AircraftsInAirspace.Add(currentData);
+        }
+
+        public void Remove(FormattedData oldData)
+        {
+            AircraftsInAirspace.Remove(oldData);
+        }
+
+        public List<FormattedData> GetAircraftList()
+        {
+            return AircraftsInAirspace;
+        }
+
+        public void EvaluateData(FormattedData formattedData)
+        {
+
+        }
     }
 }

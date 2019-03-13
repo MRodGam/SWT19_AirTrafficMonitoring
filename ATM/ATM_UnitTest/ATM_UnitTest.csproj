@@ -60,8 +60,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SeperationCalculator\EvaluateData.cs" />
     <Compile Include="Formatter\FormatData.cs" />
-    <Compile Include="position-speed\PositionCalculatorTestUnit.cs" />
+    <Compile Include="SeperationCalculator\GetList_Add_Remove.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    class RenderData 
+    public class RenderData 
     {
     }
 }
