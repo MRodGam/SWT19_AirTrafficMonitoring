@@ -30,7 +30,7 @@ namespace ATM
             return AircraftsInAirspace;
         }
 
-        public bool EvaluateData(FormattedData formattedData)
+        public bool IsAircraftInAirspace(FormattedData formattedData)
         {
             bool result = false;
 

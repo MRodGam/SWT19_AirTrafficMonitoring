@@ -40,7 +40,7 @@ namespace ATM
 
         //private void HandleNewData(FormattedData currentData)
         //{
-        //    if (_seperationCalculator.EvaluateData(currentData) == true)
+        //    if (_seperationCalculator.IsAircraftInAirspace(currentData) == true)
         //    {
         //        foreach (FormattedData aircraft in _seperationCalculator.GetAircraftList())
         //        {
