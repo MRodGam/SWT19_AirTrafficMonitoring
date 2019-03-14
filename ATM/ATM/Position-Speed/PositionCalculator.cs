@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    class PositionCalculator
+    public class PositionCalculator : IPositionCalculator
     {
         private double currentDegrees;
         private string currentCourse;
-        private int findA;
+        private double findA;
 
         public string CalculatePosition(FormattedData currentData) //angiver en kurs i grader
         {
