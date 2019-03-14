@@ -74,12 +74,14 @@ namespace ATM
         {
             double distanceVectorX = Math.Abs(currentData.XCoordinate - comparisonData.XCoordinate);
             double distanceVectorY = Math.Abs(currentData.YCoordinate - comparisonData.YCoordinate);
+            double distanceVectorDiagonal = Math.Abs(Math.Sqrt(Math.Pow(distanceVectorX,2)+ Math.Pow(distanceVectorY, 2)));
             double distanceVectorVertical = Math.Abs(currentData.Altitude - comparisonData.Altitude);
 
             bool result;
 
-            if (distanceVectorX <= 500  && distanceVectorVertical <= 300 ||
-                distanceVectorY <=500 && distanceVectorVertical <=300)
+            if (distanceVectorX <= 5000  && distanceVectorVertical <= 300
+                || distanceVectorY <=5000 && distanceVectorVertical <=300
+                || distanceVectorDiagonal <=5000 && distanceVectorVertical <=300)
             {
                 result = true;
             }
