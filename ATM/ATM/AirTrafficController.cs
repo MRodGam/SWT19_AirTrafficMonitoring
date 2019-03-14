@@ -7,7 +7,7 @@ using TransponderReceiver;
 
 namespace ATM
 {
-    public class AirTrafficController
+    public class AirTrafficController : IAirTrafficController
     {
         private IFormatter receiver;
         private ISeperationCalculator _seperationCalculator;
@@ -15,10 +15,12 @@ namespace ATM
         private ISpeedCalculator _speedCalculator;
         private IRender _render;
 
-        public FormattedData CurrentData { get; private set; }
+        public FormattedData CurrentData;
         public FormattedData oldData { get; private set; }
 
-        public AirTrafficController(IFormatter receiver, ISeperationCalculator seperationCalculator,IPositionCalculator positionCalculator,ISpeedCalculator speedCalculator,IRender render)
+        // public AirTrafficController(IFormatter receiver, ISeperationCalculator seperationCalculator,IPositionCalculator positionCalculator,ISpeedCalculator speedCalculator,IRender render)
+        public AirTrafficController(IFormatter receiver, ISeperationCalculator seperationCalculator)
+
         {
             // This will store the real or the fake transponder data receiver
             this.receiver = receiver;
@@ -27,51 +29,52 @@ namespace ATM
             this.receiver.FormattedDataReady += ReceiverOnFormattedDataReady;
 
             _seperationCalculator = seperationCalculator;
-            _positionCalculator = positionCalculator;
-            _speedCalculator = speedCalculator;
-            _render = render;
+            //_positionCalculator = positionCalculator;
+            //_speedCalculator = speedCalculator;
+            //_render = render;
         }
 
-        private void ReceiverOnFormattedDataReady(object sender, FormattedDataEventArgs e)
+        public void ReceiverOnFormattedDataReady(object sender, FormattedDataEventArgs e)
         {
             CurrentData = e.FormattedData;
-            //HandleNewData(e.FormattedData);
+            HandleNewData(e.FormattedData);
         }
 
-        //private void HandleNewData(FormattedData currentData)
-        //{
-        //    if (_seperationCalculator.IsAircraftInAirspace(currentData) == true)
-        //    {
-        //        foreach (FormattedData aircraft in _seperationCalculator.GetAircraftList())
-        //        {
-        //            if (currentData.Tag == aircraft.Tag)
-        //            {
-        //                oldData = aircraft;
-        //            }
-        //        }
+        public void HandleNewData(FormattedData currentData)
+        {
+            if (_seperationCalculator.IsAircraftInAirspace(currentData) == true)
+            {
+                foreach (FormattedData aircraft in _seperationCalculator.GetAircraftList())
+                {
+                    if (currentData.Tag == aircraft.Tag)
+                    {
+                        oldData = aircraft;
+                    }
+                }
 
-        //        currentData.Speed = _speedCalculator.CalcuateSpeed(currentData, oldData);
-        //        currentData.CompassCourse = _positionCalculator.CalculateCourse(currentData, oldData);
-        //        _seperationCalculator.Remove(oldData);
-        //        _seperationCalculator.Add(currentData);
-        //
-        //        if(_seperationCalculator.IsThereConflict(currentData)==true)
-        //        {
-        //             // Set state to in conflict
-        //             // Call one type of print
-        //        }
-        //        else
-        //        {
-        //              // Set state to not in conflict
-        //              // Call another type of print
-        //        }
-        //    }
-        //    else
-        //    {
-        //        _seperationCalculator.Add(currentData);
-        //        _seperationCalculator.EvaluateData(currentData);
-        //        // Call print method no conflict
-        //    }
-        //}
+                //currentData.Speed = _speedCalculator.CalcuateSpeed(currentData, oldData);
+                //currentData.CompassCourse = _positionCalculator.CalculateCourse(currentData, oldData);
+                _seperationCalculator.Remove(oldData);
+                _seperationCalculator.Add(currentData);
+                _seperationCalculator.IsThereConflict(currentData);
+
+                //if (_seperationCalculator.IsThereConflict(currentData) == true)
+                //{
+                //    // Set state to in conflict
+                //    // Call one type of print
+                //}
+                //else
+                //{
+                //    // Set state to not in conflict
+                //    // Call another type of print
+                //}
+            }
+            else
+            {
+                _seperationCalculator.Add(currentData);
+                _seperationCalculator.IsThereConflict(currentData);
+                // Call print method no conflict
+            }
+        }
     }
 }

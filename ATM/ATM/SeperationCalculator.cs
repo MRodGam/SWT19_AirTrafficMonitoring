@@ -77,7 +77,7 @@ namespace ATM
             double distanceVectorDiagonal = Math.Abs(Math.Sqrt(Math.Pow(distanceVectorX,2)+ Math.Pow(distanceVectorY, 2)));
             double distanceVectorVertical = Math.Abs(currentData.Altitude - comparisonData.Altitude);
 
-            bool result;
+            bool result = false;
 
             if (distanceVectorX <= 5000  && distanceVectorVertical <= 300
                 || distanceVectorY <=5000 && distanceVectorVertical <=300

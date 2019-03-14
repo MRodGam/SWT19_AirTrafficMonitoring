@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AirTrafficController\HandleNewData.cs" />
     <Compile Include="SeperationCalculator\IsThereConflict_AreAircraftsInConflict.cs" />
     <Compile Include="SeperationCalculator\EvaluateData.cs" />
     <Compile Include="Formatter\FormatData.cs" />

@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    public interface IAirTrafficController 
+    public interface IAirTrafficController
     {
+        void ReceiverOnFormattedDataReady(object sender, FormattedDataEventArgs e);
+        void HandleNewData(FormattedData currentData);
+
+
     }
 }
