@@ -105,5 +105,33 @@ namespace ATM_UnitTest
 
             Assert.That(_uut.IsThereConflict(test3) == false);
         }
+
+        [Test]
+        public void AreAircraftsInConflict_OnlyOnePointOfConflictHorizontal_ExpectedFalse()
+        {
+            FormattedData test1 = new FormattedData("Test1", 3000, 3000, 3000, 0, "Nord", 0);
+            _uut.Add(test1);
+
+            FormattedData test2 = new FormattedData("Test2", 1600, 1600, 1800, 0, "Nord", 0);
+            _uut.Add(test2);
+
+            FormattedData test3 = new FormattedData("Test3", 1500, 1000, 1000, 0, "Nord", 0);
+
+            Assert.That(_uut.IsThereConflict(test3) == false);
+        }
+
+        [Test]
+        public void AreAircraftsInConflict_OnlyOnePointOfConflictVertical_ExpectedFalse()
+        {
+            FormattedData test1 = new FormattedData("Test1", 3000, 3000, 3000, 0, "Nord", 0);
+            _uut.Add(test1);
+
+            FormattedData test2 = new FormattedData("Test2", 1600, 1600, 1800, 0, "Nord", 0);
+            _uut.Add(test2);
+
+            FormattedData test3 = new FormattedData("Test3", 2400, 1000, 1600, 0, "Nord", 0);
+
+            Assert.That(_uut.IsThereConflict(test3) == false);
+        }
     }
 }
