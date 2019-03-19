@@ -9,5 +9,7 @@ namespace ATM
     public interface IPositionCalculator
     {
         string CalculatePosition(FormattedData currentData);
+        string WriteCurrentPosition(double currentDegrees);
+
     }
 }
