@@ -10,14 +10,14 @@ namespace ATM
     public class FormattedData
     {
         public string Tag { get; set; }
-        public int XCoordinate { get; set; }
-        public int YCoordinate { get; set; }
-        public int Altitude { get; set; }
+        public double XCoordinate { get; set; }
+        public double YCoordinate { get; set; }
+        public double Altitude { get; set; }
         public double TimeStamp { get; set; }
         public string CompassCourse { get; set; }
         public double Speed { get; set; }
 
-        public FormattedData(string tag, int xcoordinate, int ycoordinate, int altitude, double timestamp, string compasscourse, double speed)
+        public FormattedData(string tag, double xcoordinate, double ycoordinate, double altitude, double timestamp, string compasscourse, double speed)
         {
             Tag = tag;
             XCoordinate = xcoordinate;

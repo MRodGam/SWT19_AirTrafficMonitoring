@@ -41,10 +41,9 @@ namespace ATM
 
         public FormattedData FormatData(string data)
         {
-            string[] inputFields;
-            inputFields = data.Split(';');
-            currentData = new FormattedData(Convert.ToString(inputFields[0]), Convert.ToInt32(inputFields[1]),
-                Convert.ToInt32(inputFields[2]), Convert.ToInt32(inputFields[3]), Convert.ToString(inputFields[4]),"",0);
+            string[] inputFields = data.Split(';');
+            currentData = new FormattedData(Convert.ToString(inputFields[0]), Convert.ToDouble(inputFields[1]),
+                Convert.ToDouble(inputFields[2]), Convert.ToDouble(inputFields[3]), Convert.ToDouble(inputFields[4]),"",0);
 
             return currentData;
         }

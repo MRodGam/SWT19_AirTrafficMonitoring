@@ -8,6 +8,6 @@ namespace ATM
 {
     public interface IPositionCalculator
     {
-        string CalculatePosition(FormattedData currentData, FormattedData oldData);
+        string CalculatePosition(FormattedData currentData);
     }
 }
