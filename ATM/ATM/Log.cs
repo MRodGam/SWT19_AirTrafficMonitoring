@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    class Log
+    class Log : ILog
     {
+        public void LogSeperation(FormattedData conflict1, FormattedData conflict2)
+        {
+
+        }
     }
 }

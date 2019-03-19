@@ -23,7 +23,7 @@ namespace ATM_UnitTest
         }
 
         [Test]
-        public void EvaluateData_AircraftIsInAirspace_ExpectedTrue()
+        public void IsAircraftInAirspace_AircraftIsInAirspace_ExpectedTrue()
         {
             FormattedData test1 = new FormattedData("test1", 1, 1, 1, 1200, "nord", 10);
             _uut.Add(test1);
@@ -34,11 +34,11 @@ namespace ATM_UnitTest
             FormattedData test3 = new FormattedData("test3", 3, 3, 3, 3300, "øst", 30);
             _uut.Add(test3);
 
-            Assert.That(_uut.EvaluateData(test3)==true);
+            Assert.That(_uut.IsAircraftInAirspace(test3)==true);
         }
 
         [Test]
-        public void EvaluateData_AircraftIsNotInAirspace_ExpectedFalse()
+        public void IsAircraftInAirspace_AircraftIsNotInAirspace_ExpectedFalse()
         {
             FormattedData test1 = new FormattedData("test1", 1, 1, 1, 1200, "nord", 10);
             _uut.Add(test1);
@@ -51,7 +51,7 @@ namespace ATM_UnitTest
 
             FormattedData test4 = new FormattedData("test4", 4, 4, 4, 4400, "vest", 40);
 
-            Assert.That(_uut.EvaluateData(test4) == false);
+            Assert.That(_uut.IsAircraftInAirspace(test4) == false);
         }
 
         [Test]
@@ -68,7 +68,7 @@ namespace ATM_UnitTest
 
             FormattedData test1_new = new FormattedData("test1", 4, 4, 4, 4400, "vest", 40);
 
-            Assert.That(_uut.EvaluateData(test1_new) == true);
+            Assert.That(_uut.IsAircraftInAirspace(test1_new) == true);
         }
 
     }
