@@ -64,14 +64,14 @@ namespace ATM
                     IsThereConflicts = true;
 
                     _render = new RenderWithSeperation();
-                    _render.PrintData(_seperationCalculator.GetAircraftList());
+                    _render.PrintData(_seperationCalculator.GetAircraftList(), _seperationCalculator.GetConflicts());
                 }
                 else
                 {
                     IsThereConflicts = false;
 
                     _render = new RenderData();
-                    _render.PrintData(_seperationCalculator.GetAircraftList());
+                    _render.PrintData(_seperationCalculator.GetAircraftList(),_seperationCalculator.GetConflicts());
                 }
             }
             else
@@ -83,13 +83,13 @@ namespace ATM
                 {
                     IsThereConflicts = true;
                     _render = new RenderWithSeperation();
-                    _render.PrintData(_seperationCalculator.GetAircraftList());
+                    _render.PrintData(_seperationCalculator.GetAircraftList(), _seperationCalculator.GetConflicts());
                 }
                 else
                 {
                     IsThereConflicts = false;
                     _render = new RenderData();
-                    _render.PrintData(_seperationCalculator.GetAircraftList());
+                    _render.PrintData(_seperationCalculator.GetAircraftList(), _seperationCalculator.GetConflicts());
                 }
             }
         }

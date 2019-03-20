@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,11 +22,11 @@ namespace ATM
 
         public double CalculateHours(FormattedData currentData, FormattedData oldData)
         {
-            
-            TimeSpan difference = DateTime.Parse(currentData.TimeStamp) - DateTime.Parse(oldData.TimeStamp);
-            double dif = Convert.ToDouble(difference);
+            double difference = (currentData.TimeStamp- oldData.TimeStamp).TotalSeconds;
 
-            return dif;
+            //double dif = Convert.ToDouble(difference);
+
+            return difference;
 
         }
     }

@@ -8,7 +8,7 @@ namespace ATM
 {
     public class RenderData : IRender
     {
-        public void PrintData(List<FormattedData> aircrafts)
+        public void PrintData(List<FormattedData> aircrafts, List<Conflict> conflicts)
         {
             Console.Clear();
 
