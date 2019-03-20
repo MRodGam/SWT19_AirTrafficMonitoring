@@ -12,7 +12,7 @@ namespace ATM
         public string tag1;
         private FormattedData _conflict2;
         public string tag2;
-        public double timeStamp;
+        public string timeStamp;
 
         public Conflict(FormattedData conflict1, FormattedData conflict2)
         {

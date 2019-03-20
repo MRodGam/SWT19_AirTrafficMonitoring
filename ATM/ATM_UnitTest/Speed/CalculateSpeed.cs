@@ -21,11 +21,17 @@ namespace ATM_UnitTest.Speed
         }
 
         [Test]
-
         public void Speed_ExpectedToTrue()
         {
-            //double distance = 1000;
-            //double time = 1;
+            
+            FormattedData currentData = new FormattedData("Current data", 20000, 1000, 2000, "2019-03-19 13:21:21", "South", 10);
+            FormattedData oldData = new FormattedData("Old data", 20000, 1000, 2000, "2019-03-19 14:32:25", "East", 50);
+
+       
+            Assert.AreEqual(_uut.CalculateSpeed(currentData, oldData), 1);
+
+
+
         }
     }
 }

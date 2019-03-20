@@ -60,7 +60,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Log\Add_andLog.cs" />
+    <Compile Include="Log\Add_Remove.cs" />
     <Compile Include="AirTrafficController\HandleNewData.cs" />
+    <Compile Include="Log\FakeLogWriter.cs" />
     <Compile Include="SeperationCalculator\IsThereConflict_AreAircraftsInConflict.cs" />
     <Compile Include="PositionCalculatorUnitTest\PositionCalulator_TestUnit.cs" />
     <Compile Include="SeperationCalculator\EvaluateData.cs" />

@@ -13,17 +13,18 @@ namespace ATM
         public double XCoordinate { get; set; }
         public double YCoordinate { get; set; }
         public double Altitude { get; set; }
-        public double TimeStamp { get; set; }
+        public string TimeStamp { get; set; }
         public string CompassCourse { get; set; }
         public double Speed { get; set; }
 
-        public FormattedData(string tag, double xcoordinate, double ycoordinate, double altitude, double timestamp, string compasscourse, double speed)
+        public FormattedData(string tag, double xcoordinate, double ycoordinate, double altitude, string timestamp, string compasscourse, double speed)
         {
             Tag = tag;
             XCoordinate = xcoordinate;
             YCoordinate = ycoordinate;
             Altitude = altitude;
-            TimeStamp = timestamp;
+            //TimeStamp = timestamp;
+            TimeStamp = "yyyy-mm-dd hh:mm:ms";
             CompassCourse = compasscourse;
             Speed = speed;
         }
