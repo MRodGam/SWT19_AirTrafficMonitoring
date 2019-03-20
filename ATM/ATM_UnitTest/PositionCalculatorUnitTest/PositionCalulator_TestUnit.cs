@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NUnit;
 using NUnit.Framework;
 using NSubstitute;
 using ATM;
@@ -25,11 +26,41 @@ namespace ATM_UnitTest.PositionCalculatorUnitTest
         [Test]
         public void Test_PositionReturnsNord()
         {
-            FormattedData test1 = new FormattedData("test1", 1, 1, 0, 0, "Nord", 0);
+            FormattedData test1 = new FormattedData("test1", 60, 34, 0, 0, "Nord", 0); 
             string expected = "Nord";
+            string actual = _uut.CalculatePosition(test1);
+            
+           Assert.AreEqual(expected,actual);
+        }
 
-            Assert.That(_uut.CalculatePosition(test1).Equals("Nord"));
-           // Assert.AreEqual(expected, _uut.CalculatePosition(test1));
+        [Test]
+        public void Test_PositionReturnsØst()
+        {
+            FormattedData test2 = new FormattedData("test2", 60, 50, 0, 0, "Øst", 0); 
+            string expected = "Øst";
+            string actual = _uut.CalculatePosition(test2);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Test_PositionReturnsSyd()
+        {
+            FormattedData test3 = new FormattedData("test3", 60, 71, 0, 0, "Syd", 0);
+            string expected = "Syd";
+            string actual = _uut.CalculatePosition(test3);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Test_PositionReturnsVest()
+        {
+            FormattedData test4 = new FormattedData("test4", 60, 120, 0, 0, "Vest", 0);
+            string expected = "Vest";
+            string actual = _uut.CalculatePosition(test4);
+
+            Assert.AreEqual(expected, actual);
         }
     }
 }
