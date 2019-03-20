@@ -26,13 +26,13 @@ namespace ATM_UnitTest
         [Test]
         public void Add_AddAircraftToList_ExpectedTrue()
         {
-            FormattedData test1 = new FormattedData("test1",1,1,1,"1200","nord",10);
+            FormattedData test1 = new FormattedData("test1",1,1,1, DateTime.Today, "nord",10);
             _uut.Add(test1);
 
-            FormattedData test2 = new FormattedData("test2", 2, 2, 2, "2200", "syd", 20);
+            FormattedData test2 = new FormattedData("test2", 2, 2, 2, DateTime.Today, "syd", 20);
             _uut.Add(test2);
 
-            FormattedData test3 = new FormattedData("test3", 3, 3, 3, "3300", "øst", 30);
+            FormattedData test3 = new FormattedData("test3", 3, 3, 3, DateTime.Today, "øst", 30);
             _uut.Add(test3);
 
             Assert.AreEqual(_uut.GetAircraftList().Count,3);
@@ -41,13 +41,13 @@ namespace ATM_UnitTest
         [Test]
         public void Remove_RemoveAircraftToList_ExpectedTrue()
         {
-            FormattedData test1 = new FormattedData("test1", 1, 1, 1, "1200", "nord", 10);
+            FormattedData test1 = new FormattedData("test1", 1, 1, 1, DateTime.Today, "nord", 10);
             _uut.Add(test1);
 
-            FormattedData test2 = new FormattedData("test2", 2, 2, 2, "2200", "syd", 20);
+            FormattedData test2 = new FormattedData("test2", 2, 2, 2, DateTime.Today, "syd", 20);
             _uut.Add(test2);
 
-            FormattedData test3 = new FormattedData("test3", 3, 3, 3, "3300", "øst", 30);
+            FormattedData test3 = new FormattedData("test3", 3, 3, 3, DateTime.Today, "øst", 30);
             _uut.Add(test2);
 
             _uut.Remove(test1);
@@ -58,9 +58,9 @@ namespace ATM_UnitTest
         [Test]
         public void Add_CompareAircraftInList_ExpectedTrue()
         {
-            FormattedData test1 = new FormattedData("test1", 1, 1, 1, "1200", "nord", 10);
+            FormattedData test1 = new FormattedData("test1", 1, 1, 1, DateTime.Today, "nord", 10);
             _uut.Add(test1);
-            FormattedData result = new FormattedData("0",0,0,0,"0","0",0);
+            FormattedData result = new FormattedData("0",0,0,0, DateTime.Today,"0",0);
 
             foreach (FormattedData test in _uut.GetAircraftList())
             {

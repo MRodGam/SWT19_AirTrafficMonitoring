@@ -43,7 +43,7 @@ namespace ATM
         {
             string[] inputFields = data.Split(';');
             currentData = new FormattedData(Convert.ToString(inputFields[0]), Convert.ToDouble(inputFields[1]),
-                Convert.ToDouble(inputFields[2]), Convert.ToDouble(inputFields[3]), Convert.ToString(inputFields[4]),"",0);
+                Convert.ToDouble(inputFields[2]), Convert.ToDouble(inputFields[3]), DateTime.ParseExact(inputFields[4], "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture),"",0);
 
             return currentData;
         }

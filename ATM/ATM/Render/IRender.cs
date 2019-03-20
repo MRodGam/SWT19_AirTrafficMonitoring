@@ -8,6 +8,6 @@ namespace ATM
 {
     public interface IRender
     {
-        void PrintData(List<FormattedData> aircrafts);
+        void PrintData(List<FormattedData> aircrafts, List<Conflict> conflicts);
     }
 }

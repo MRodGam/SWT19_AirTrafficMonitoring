@@ -75,11 +75,6 @@ namespace ATM
             return result;
         }
 
-        public FormattedData GetConflict()
-        {
-            return aircraftInConflict;
-        }
-
         public bool AreAircraftsInConflict(FormattedData currentData, FormattedData comparisonData)
         {
             double distanceVectorX = Math.Abs(currentData.XCoordinate - comparisonData.XCoordinate);
@@ -101,6 +96,11 @@ namespace ATM
             }
 
             return result;
+        }
+
+        public List<Conflict> GetConflicts()
+        {
+            return _log.GetConflictList();
         }
     }
 }

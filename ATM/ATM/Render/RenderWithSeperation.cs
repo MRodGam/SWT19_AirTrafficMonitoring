@@ -8,7 +8,7 @@ namespace ATM
 {
     public class RenderWithSeperation : IRender
     {
-        public void PrintData(List<FormattedData> aircrafts)
+        public void PrintData(List<FormattedData> aircrafts, List<Conflict> conflicts)
         {
             Console.Clear();
 
@@ -19,12 +19,14 @@ namespace ATM
                                 aircraft.Altitude + "\tCourse: " + aircraft.CompassCourse + "\tSpeed: " +
                                 aircraft.Speed +
                                 " km/hour\tTime: " + aircraft.TimeStamp;
-                string conflict = "There is conflict between ";
 
                 Console.WriteLine(format);
+            }
+            foreach (var aircraft in conflicts)
+            {
+                string conflict = "At " + aircraft.timeStamp +" there was registered a conflict between "+ aircraft.tag1 +" and "+aircraft.tag2;
                 Console.WriteLine(conflict);
             }
-
         }
     }
 }
