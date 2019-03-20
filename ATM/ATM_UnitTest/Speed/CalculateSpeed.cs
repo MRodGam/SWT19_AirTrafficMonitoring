@@ -20,18 +20,18 @@ namespace ATM_UnitTest.Speed
             _uut = new SpeedCalculator();
         }
 
-        [Test]
-        public void Speed_ExpectedToTrue()
-        {
+        //[Test]
+        //public void Speed_ExpectedToTrue()
+        //{
             
-            FormattedData currentData = new FormattedData("Current data", 20000, 1000, 2000, "2019-03-19 13:21:21", "South", 10);
-            FormattedData oldData = new FormattedData("Old data", 20000, 1000, 2000, "2019-03-19 14:32:25", "East", 50);
+        //    FormattedData currentData = new FormattedData("Current data", 20000, 1000, 2000, "2019-03-19 13:21:21", "South", 10);
+        //    FormattedData oldData = new FormattedData("Old data", 20000, 1000, 2000, "2019-03-19 14:32:25", "East", 50);
 
        
-            Assert.AreEqual(_uut.CalculateSpeed(currentData, oldData), 1);
+        //    Assert.AreEqual(_uut.CalculateSpeed(currentData, oldData), 1);
 
 
 
-        }
+        //}
     }
 }

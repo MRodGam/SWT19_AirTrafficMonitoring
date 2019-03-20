@@ -18,7 +18,7 @@ namespace ATM
                                 aircraft.YCoordinate + "\tAltitude: " +
                                 aircraft.Altitude + "\tCourse: " + aircraft.CompassCourse + "\tSpeed: " +
                                 aircraft.Speed +
-                                " km/hour\tTime: " + aircraft.TimeStamp;
+                                " km/hour\tTime: " + aircraft.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss.fff");
                 Console.WriteLine(format);
             }
         }
