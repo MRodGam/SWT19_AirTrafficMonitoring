@@ -56,13 +56,14 @@ namespace ATM
                 //currentData.CompassCourse = _positionCalculator.CalculateCourse(currentData, oldData);
                 _seperationCalculator.Remove(oldData);
                 _seperationCalculator.Add(currentData);
-                _seperationCalculator.IsThereConflict(currentData);
+                
 
-                //if (_seperationCalculator.IsThereConflict(currentData) == true)
-                //{
-                //    // Set state to in conflict
-                //    // Call one type of print
-                //}
+                if (_seperationCalculator.IsThereConflict(currentData) == true)
+                {
+                    // Set state to in conflict
+                    // Call one type of print
+                    
+                }
                 //else
                 //{
                 //    // Set state to not in conflict

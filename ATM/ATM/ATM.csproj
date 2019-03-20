@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AirTrafficController.cs" />
+    <Compile Include="Conflict.cs" />
     <Compile Include="Formatter\FormattedData.cs" />
     <Compile Include="Formatter\FormattedDataEventArgs.cs" />
     <Compile Include="Formatter\Formatter.cs" />

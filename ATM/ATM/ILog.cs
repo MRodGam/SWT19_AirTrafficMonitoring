@@ -8,6 +8,8 @@ namespace ATM
 {
     public interface ILog
     {
+        void Add(FormattedData conflict1, FormattedData conflict2);
+        void Remove(FormattedData conflict);
         void LogSeperation(FormattedData conflict1, FormattedData conflict2);
     }
 }
