@@ -52,7 +52,7 @@ namespace ATM
                     }
                 }
 
-                //currentData.Speed = _speedCalculator.CalcuateSpeed(currentData, oldData);
+                //currentData.Speed = _speedCalculator.CalculateSpeed(currentData, oldData);
                 //currentData.CompassCourse = _positionCalculator.CalculateCourse(currentData, oldData);
                 _seperationCalculator.Remove(oldData);
                 _seperationCalculator.Add(currentData);
@@ -64,11 +64,11 @@ namespace ATM
                     // Call one type of print
                     
                 }
-                //else
-                //{
-                //    // Set state to not in conflict
-                //    // Call another type of print
-                //}
+                else
+                {
+                    // Set state to not in conflict
+                    // Call another type of print
+                }
             }
             else
             {
