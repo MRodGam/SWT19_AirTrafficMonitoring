@@ -16,8 +16,12 @@ namespace ATM
         public string CalculatePosition(FormattedData currentData) //angiver en kurs i grader
         {
             // tanA=x-coordinat/y-coordinat 
-            findA = currentData.XCoordinate/currentData.YCoordinate;
-            currentDegrees = Math.Tan(findA);
+            findA = currentData.YCoordinate/currentData.XCoordinate;
+            currentDegrees = Math.Tan(findA)*0.01745329; //omregner fra radianer til grader
+            if (currentDegrees >= -1 || currentDegrees >= -180)
+            {
+                currentDegrees = currentDegrees + 360;
+            }
             return WriteCurrentPosition(currentDegrees);
         }
 

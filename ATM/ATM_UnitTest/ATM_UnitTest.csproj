@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="AirTrafficController\HandleNewData.cs" />
     <Compile Include="SeperationCalculator\IsThereConflict_AreAircraftsInConflict.cs" />
+    <Compile Include="PositionCalculatorUnitTest\PositionCalulator_TestUnit.cs" />
     <Compile Include="SeperationCalculator\EvaluateData.cs" />
     <Compile Include="Formatter\FormatData.cs" />
     <Compile Include="SeperationCalculator\GetList_Add_Remove.cs" />
