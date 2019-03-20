@@ -8,8 +8,22 @@ namespace ATM
 {
     public class RenderWithSeperation : IRender
     {
-        public void PrintData(FormattedData formattedData)
+        public void PrintData(List<FormattedData> aircrafts)
         {
+            Console.Clear();
+
+            foreach (var aircraft in aircrafts)
+            {
+                string format = "Tag: " + aircraft.Tag + "\tPosition:  " + aircraft.XCoordinate + "," +
+                                aircraft.YCoordinate + "\tAltitude: " +
+                                aircraft.Altitude + "\tCourse: " + aircraft.CompassCourse + "\tSpeed: " +
+                                aircraft.Speed +
+                                " km/hour\tTime: " + aircraft.TimeStamp;
+                string conflict = "There is conflict between ";
+
+                Console.WriteLine(format);
+                Console.WriteLine(conflict);
+            }
 
         }
     }

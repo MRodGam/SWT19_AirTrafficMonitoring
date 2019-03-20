@@ -101,7 +101,7 @@ namespace ATM_UnitTest
             FormattedData test2 = new FormattedData("Test2", 16000, 16000, 1800, "0", "Nord", 0);
             _uut.Add(test2);
 
-            FormattedData test3 = new FormattedData("Test3",10000,10000,1000, "0", "Nord",0);
+            FormattedData test3 = new FormattedData("Test3",10000,10000,1000,"0","Nord",0);
 
             Assert.That(_uut.IsThereConflict(test3) == false);
         }

@@ -43,7 +43,7 @@ namespace ATM_UnitTest
             FormattedData test1 = new FormattedData("test1", 1, 1, 1, "1200", "nord", 10);
             _uut.Add(test1);
 
-            FormattedData test2 = new FormattedData("test2", 2, 2, 2, "2200", "syd", 20);
+            FormattedData test2 = new FormattedData("test2", 2, 2, 2, "2200", "syd", 22);
             _uut.Add(test2);
 
             FormattedData test3 = new FormattedData("test3", 3, 3, 3, "3300", "øst", 30);
@@ -60,7 +60,7 @@ namespace ATM_UnitTest
             FormattedData test1 = new FormattedData("test1", 1, 1, 1, "1200", "nord", 10);
             _uut.Add(test1);
 
-            FormattedData test2 = new FormattedData("test2", 2, 2, 2, "2200", "syd", 20);
+            FormattedData test2 = new FormattedData("test2", 2, 2, 2, "2200", "syd", 22);
             _uut.Add(test2);
 
             FormattedData test3 = new FormattedData("test3", 3, 3, 3, "3300", "øst", 30);

@@ -18,8 +18,9 @@ namespace ATM
         public FormattedData CurrentData;
         public FormattedData oldData { get; private set; }
 
-        // public AirTrafficController(IFormatter receiver, ISeperationCalculator seperationCalculator,IPositionCalculator positionCalculator,ISpeedCalculator speedCalculator,IRender render)
-        public AirTrafficController(IFormatter receiver, ISeperationCalculator seperationCalculator)
+        public bool IsThereConflicts = false;
+
+        public AirTrafficController(IFormatter receiver, ISeperationCalculator seperationCalculator, IRender render, IPositionCalculator positionCalculator, ISpeedCalculator speedCalculator)
 
         {
             // This will store the real or the fake transponder data receiver
@@ -29,9 +30,9 @@ namespace ATM
             this.receiver.FormattedDataReady += ReceiverOnFormattedDataReady;
 
             _seperationCalculator = seperationCalculator;
-            //_positionCalculator = positionCalculator;
-            //_speedCalculator = speedCalculator;
-            //_render = render;
+            _positionCalculator = positionCalculator;
+            _speedCalculator = speedCalculator;
+            _render = render;
         }
 
         public void ReceiverOnFormattedDataReady(object sender, FormattedDataEventArgs e)
@@ -52,28 +53,44 @@ namespace ATM
                     }
                 }
 
-                //currentData.Speed = _speedCalculator.CalcuateSpeed(currentData, oldData);
-                //currentData.CompassCourse = _positionCalculator.CalculateCourse(currentData, oldData);
+                currentData.Speed = _speedCalculator.CalculateSpeed(currentData, oldData);
+                currentData.CompassCourse = _positionCalculator.CalculatePosition(currentData);
                 _seperationCalculator.Remove(oldData);
                 _seperationCalculator.Add(currentData);
-                _seperationCalculator.IsThereConflict(currentData);
+                
 
-                //if (_seperationCalculator.IsThereConflict(currentData) == true)
-                //{
-                //    // Set state to in conflict
-                //    // Call one type of print
-                //}
-                //else
-                //{
-                //    // Set state to not in conflict
-                //    // Call another type of print
-                //}
+                if (_seperationCalculator.IsThereConflict(currentData) == true)
+                {
+                    IsThereConflicts = true;
+
+                    _render = new RenderWithSeperation();
+                    _render.PrintData(_seperationCalculator.GetAircraftList());
+                }
+                else
+                {
+                    IsThereConflicts = false;
+
+                    _render = new RenderData();
+                    _render.PrintData(_seperationCalculator.GetAircraftList());
+                }
             }
             else
             {
                 _seperationCalculator.Add(currentData);
                 _seperationCalculator.IsThereConflict(currentData);
-                // Call print method no conflict
+
+                if (_seperationCalculator.IsThereConflict(currentData) == true)
+                {
+                    IsThereConflicts = true;
+                    _render = new RenderWithSeperation();
+                    _render.PrintData(_seperationCalculator.GetAircraftList());
+                }
+                else
+                {
+                    IsThereConflicts = false;
+                    _render = new RenderData();
+                    _render.PrintData(_seperationCalculator.GetAircraftList());
+                }
             }
         }
     }

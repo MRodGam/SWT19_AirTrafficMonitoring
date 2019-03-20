@@ -12,6 +12,8 @@ namespace ATM
         public IPositionCalculator _positionCalculator;
         public ILog _log;
 
+        public FormattedData aircraftInConflict;
+
         //public SeperationCalculator(IPositionCalculator positionCalculator, ILog log)
         public SeperationCalculator()
         {
@@ -56,18 +58,26 @@ namespace ATM
 
             foreach (FormattedData aircraft in GetAircraftList())
             {
-                if (AreAircraftsInConflict(currentData,aircraft) ==true)
+                if (currentData.Tag != aircraft.Tag && AreAircraftsInConflict(currentData,aircraft) ==true)
                 {
                     result = true;
-                    // _log.LogSeperation(currentData, aircraft);
+                    aircraftInConflict = aircraft;
+                    //_log.Add(aircraft,currentData);
+
                 }
                 else
                 {
                     result = false;
+                    //_log.Remove(currentData);
                 }
             }
 
             return result;
+        }
+
+        public FormattedData GetConflict()
+        {
+            return aircraftInConflict;
         }
 
         public bool AreAircraftsInConflict(FormattedData currentData, FormattedData comparisonData)
@@ -77,7 +87,7 @@ namespace ATM
             double distanceVectorDiagonal = Math.Abs(Math.Sqrt(Math.Pow(distanceVectorX,2)+ Math.Pow(distanceVectorY, 2)));
             double distanceVectorVertical = Math.Abs(currentData.Altitude - comparisonData.Altitude);
 
-            bool result = false;
+            bool result;
 
             if (distanceVectorX <= 5000  && distanceVectorVertical <= 300
                 || distanceVectorY <=5000 && distanceVectorVertical <=300
