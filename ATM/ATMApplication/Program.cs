@@ -13,6 +13,8 @@ namespace ATMApplication
     {
         static void Main(string[] args)
         {
+            var positionCalculator = new PositionCalculator();
+
             // Using the real transponder data receiver
             var receiver = TransponderReceiverFactory.CreateTransponderDataReceiver();
 
