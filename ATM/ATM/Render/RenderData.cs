@@ -6,7 +6,21 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    public class RenderData 
+    public class RenderData : IRender
     {
+        public void PrintData(List<FormattedData> aircrafts)
+        {
+            Console.Clear();
+
+            foreach (var aircraft in aircrafts)
+            {
+                string format = "Tag: " + aircraft.Tag + "\tPosition:  " + aircraft.XCoordinate + "," +
+                                aircraft.YCoordinate + "\tAltitude: " +
+                                aircraft.Altitude + "\tCourse: " + aircraft.CompassCourse + "\tSpeed: " +
+                                aircraft.Speed +
+                                " km/hour\tTime: " + aircraft.TimeStamp;
+                Console.WriteLine(format);
+            }
+        }
     }
 }

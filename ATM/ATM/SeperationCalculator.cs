@@ -12,6 +12,8 @@ namespace ATM
         public IPositionCalculator _positionCalculator;
         public ILog _log;
 
+        public FormattedData aircraftInConflict;
+
         //public SeperationCalculator(IPositionCalculator positionCalculator, ILog log)
         public SeperationCalculator()
         {
@@ -56,20 +58,26 @@ namespace ATM
 
             foreach (FormattedData aircraft in GetAircraftList())
             {
-                if (AreAircraftsInConflict(currentData,aircraft) ==true)
+                if (currentData.Tag != aircraft.Tag && AreAircraftsInConflict(currentData,aircraft) ==true)
                 {
                     result = true;
+                    aircraftInConflict = aircraft;
                     //_log.Add(aircraft,currentData);
+
                 }
                 else
                 {
                     result = false;
                     //_log.Remove(currentData);
-                    // AircraftsInAirspace.Remove(aircraft);
                 }
             }
 
             return result;
+        }
+
+        public FormattedData GetConflict()
+        {
+            return aircraftInConflict;
         }
 
         public bool AreAircraftsInConflict(FormattedData currentData, FormattedData comparisonData)

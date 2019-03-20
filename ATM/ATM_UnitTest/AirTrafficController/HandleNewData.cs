@@ -17,6 +17,9 @@ namespace ATM_UnitTest
         private IFormatter _formatter;
         private ISeperationCalculator _seperationCalculator;
         private IAirTrafficController _uut;
+        private IRender _render;
+        private IPositionCalculator _position;
+        private ISpeedCalculator _speed;
 
         [SetUp]
         public void SetUp()
@@ -24,9 +27,12 @@ namespace ATM_UnitTest
             // Make a fake Transponder Data Receiver
             _fakeTransponderReceiver = Substitute.For<ITransponderReceiver>();
 
+            _speed = new SpeedCalculator();
             _formatter = new Formatter(_fakeTransponderReceiver);
             _seperationCalculator = new SeperationCalculator();
-            _uut = new AirTrafficController(_formatter, _seperationCalculator);
+            _render = new RenderData();
+            _position = new PositionCalculator();
+            _uut = new AirTrafficController(_formatter, _seperationCalculator, _render, _position,_speed);
         }
 
         [Test]
