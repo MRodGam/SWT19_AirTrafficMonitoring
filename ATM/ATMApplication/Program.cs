@@ -20,12 +20,13 @@ namespace ATMApplication
 
             // Dependency injection with the real TDR
             var formatter = new Formatter(receiver);
-            var seperation = new SeperationCalculator();
+
             var speed = new SpeedCalculator();
             var position = new PositionCalculator();
             var render = new RenderData();
             var writer = new LogWriter();
             var log = new Log(writer);
+            var seperation = new SeperationCalculator(log);
             var system = new AirTrafficController(formatter,seperation, render, position,speed);
 
             // Let the real TDR execute in the background

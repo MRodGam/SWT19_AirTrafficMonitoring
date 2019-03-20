@@ -15,11 +15,15 @@ namespace ATM_UnitTest
     class IsThereConflict_AreAircraftsInConflict
     {
         private ISeperationCalculator _uut;
+        private IWriter _writer;
+        private ILog _log;
 
         [SetUp]
         public void SetUp()
         {
-            _uut = new SeperationCalculator();
+            _writer = new LogWriter();
+            _log = new ATM.Log(_writer);
+            _uut = new SeperationCalculator(_log);
         }
 
         [Test]

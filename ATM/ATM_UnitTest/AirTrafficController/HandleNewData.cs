@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using NSubstitute;
 using ATM;
+using ATM_UnitTest.Log;
 using TransponderReceiver;
 
 namespace ATM_UnitTest
@@ -20,6 +21,8 @@ namespace ATM_UnitTest
         private IRender _render;
         private IPositionCalculator _position;
         private ISpeedCalculator _speed;
+        private IWriter _writer;
+        private ILog _log;
 
         [SetUp]
         public void SetUp()
@@ -29,7 +32,9 @@ namespace ATM_UnitTest
 
             _speed = new SpeedCalculator();
             _formatter = new Formatter(_fakeTransponderReceiver);
-            _seperationCalculator = new SeperationCalculator();
+            _writer = new LogWriter();
+            _log = new ATM.Log(_writer);
+            _seperationCalculator = new SeperationCalculator(_log);
             _render = new RenderData();
             _position = new PositionCalculator();
             _uut = new AirTrafficController(_formatter, _seperationCalculator, _render, _position,_speed);

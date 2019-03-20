@@ -15,11 +15,11 @@ namespace ATM
         public FormattedData aircraftInConflict;
 
         //public SeperationCalculator(IPositionCalculator positionCalculator, ILog log)
-        public SeperationCalculator()
+        public SeperationCalculator(ILog log)
         {
             AircraftsInAirspace = new List<FormattedData>();
             //_positionCalculator = positionCalculator;
-            //_log = log;
+            _log = log;
         }
 
         public void Add(FormattedData currentData)
