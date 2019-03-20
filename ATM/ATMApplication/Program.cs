@@ -24,6 +24,7 @@ namespace ATMApplication
             var speed = new SpeedCalculator();
             var position = new PositionCalculator();
             var render = new RenderWithSeperation();
+            var log = new Log();
             //var system = new AirTrafficController(formatter,seperation,position,speed,render);
             var system = new AirTrafficController(formatter,seperation);
 
