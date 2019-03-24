@@ -8,9 +8,14 @@ namespace ATM
 {
     public class RenderData : IRender
     {
+        private IClearConsole _console;
+        public RenderData(IClearConsole console)
+        {
+            _console = console;
+        }
         public void PrintData(List<FormattedData> aircrafts, List<Conflict> conflicts)
         {
-            // Console.Clear();
+            _console.ClearConsole();
 
             foreach (var aircraft in aircrafts)
             {

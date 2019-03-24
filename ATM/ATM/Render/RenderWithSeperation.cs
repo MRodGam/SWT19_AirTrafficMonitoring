@@ -8,9 +8,15 @@ namespace ATM
 {
     public class RenderWithSeperation : IRender
     {
+        private IClearConsole _console;
+        public RenderWithSeperation(IClearConsole console)
+        {
+            _console = console;
+        }
+
         public void PrintData(List<FormattedData> aircrafts, List<Conflict> conflicts)
         {
-            //Console.Clear();
+            _console.ClearConsole();
 
             foreach (var aircraft in aircrafts)
             {

@@ -45,12 +45,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AirTrafficController.cs" />
+    <Compile Include="Render\ClearConsole.cs" />
     <Compile Include="DTO\Conflict.cs" />
     <Compile Include="DTO\FormattedData.cs" />
     <Compile Include="Formatter\FormattedDataEventArgs.cs" />
     <Compile Include="Formatter\Formatter.cs" />
     <Compile Include="IAirTrafficController.cs" />
     <Compile Include="Formatter\IFormatter.cs" />
+    <Compile Include="Render\IClearConsole.cs" />
     <Compile Include="Log\IWriter.cs" />
     <Compile Include="Log\LogWriter.cs" />
     <Compile Include="Log\ILog.cs" />
