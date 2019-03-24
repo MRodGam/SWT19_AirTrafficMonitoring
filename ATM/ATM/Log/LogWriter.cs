@@ -19,12 +19,12 @@ namespace ATM
         {
             using (StreamWriter w = File.AppendText(@"Conflicts.txt"))
             {
-                foreach (var conflict in currentConflicts)
+                foreach (Conflict conflict in currentConflicts)
                 {
                     string formattedConflict = "Conflict occured at " + conflict.timeStamp + " between " + conflict.tag1 +
                                                " and " + conflict.tag2;
 
-                    w.Write(formattedConflict);
+                    // w.Write(formattedConflict);
                 }
             }
         }

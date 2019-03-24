@@ -67,7 +67,6 @@ namespace ATM
                 }
                 else
                 {
-                    result = false;
                     //_log.Remove(currentData);
                 }
             }

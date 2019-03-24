@@ -40,7 +40,7 @@ namespace ATM
 
         public List<Conflict> GetConflictList()
         {
-            if (currentConflicts.Count<0)
+            if (currentConflicts.Count>0)
             {
                 return currentConflicts;
             }

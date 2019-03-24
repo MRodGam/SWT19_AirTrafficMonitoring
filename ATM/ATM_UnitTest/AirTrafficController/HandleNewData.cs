@@ -48,11 +48,6 @@ namespace ATM_UnitTest
             DateTime date = new DateTime(2015,10,06,21,34,56,780);
             FormattedData value = new FormattedData("ATR423", 39045, 12932, 14000, date,"",0);
 
-            //testData.Add(value);
-            _formatter.FormattedDataReady += (o, e) =>
-            {
-                result = e.FormattedData;
-            }; //Simulates formatted data ready event
 
             // Act: Trigger the fake object to execute event invocation
             _formatter.FormattedDataReady
@@ -65,26 +60,20 @@ namespace ATM_UnitTest
         public void TestReception_InputThroughTransponderThreeAircraft_ExpectedTrue()
         {
             // Setup test data
-            FormattedData result = null;
-            List<string>
-                testData =
-                    new List<string>(); // Creates list with manual value that is send through trigger from TransponderData to Formatter.
-            string test1 = "ATR423;39045;12932;14000;20151006213456789";
-            testData.Add(test1);
+            DateTime date = new DateTime(2015, 10, 06, 21, 34, 56, 780);
+            FormattedData value = new FormattedData("ATR423", 39045, 12932, 14000, date, "", 0);
+            _formatter.FormattedDataReady
+                += Raise.EventWith(this, new FormattedDataEventArgs(value));
 
-            string test2 = "PPL120;29045;22932;24000;20151006213456888";
-            testData.Add(test2);
+            DateTime date2 = new DateTime(2015, 10, 06, 21, 34, 56, 789);
+            FormattedData value2 = new FormattedData("PPL120", 29045, 22932, 24000, date2, "", 0);
+            _formatter.FormattedDataReady
+                += Raise.EventWith(this, new FormattedDataEventArgs(value2));
 
-            string test3 = "QQL123;19045;12932;34000;20151006213999999";
-            testData.Add(test3);
-
-            _formatter.FormattedDataReady += (o, e) =>
-            {
-                result = e.FormattedData;
-            }; //Simulates formatted data ready event
-
-            // Act: Trigger the fake object to execute event invocation
-            //_fakeTransponderReceiver.TransponderDataReady += Raise.EventWith(this, new RawTransponderDataEventArgs(testData));
+            DateTime date3 = new DateTime(2015, 10, 06, 21, 39, 02, 999);
+            FormattedData value3 = new FormattedData("QQL123", 19045, 12932, 34000, date3, "", 0);
+            _formatter.FormattedDataReady
+                += Raise.EventWith(this, new FormattedDataEventArgs(value3));
 
             Assert.That(_seperationCalculator.GetAircraftList().Count == 3);
         }
@@ -93,26 +82,20 @@ namespace ATM_UnitTest
         public void TestReception_InputThroughTransponderSameAircraftNewPosition_ExpectedTrue()
         {
             // Setup test data
-            FormattedData result = null;
-            List<string>
-                testData =
-                    new List<string>(); // Creates list with manual value that is send through trigger from TransponderData to Formatter.
-            string test1 = "ATR423;39045;12932;14000;20151006213456789";
-            testData.Add(test1);
+            DateTime date = new DateTime(2015, 10, 06, 21, 34, 56, 780);
+            FormattedData value = new FormattedData("ATR423", 39045, 12932, 14000, date, "", 0);
+            _formatter.FormattedDataReady
+                += Raise.EventWith(this, new FormattedDataEventArgs(value));
 
-            string test2 = "PPL120;29045;22932;24000;20151006213456888";
-            testData.Add(test2);
+            DateTime date2 = new DateTime(2015, 10, 06, 21, 34, 56, 789);
+            FormattedData value2 = new FormattedData("PPL120", 29045, 22932, 24000, date2, "", 0);
+            _formatter.FormattedDataReady
+                += Raise.EventWith(this, new FormattedDataEventArgs(value2));
 
-            string test1_new = "ATR423;19045;12932;34000;20151006213999999";
-            testData.Add(test1_new);
-
-            _formatter.FormattedDataReady += (o, e) =>
-            {
-                result = e.FormattedData;
-            }; //Simulates formatted data ready event
-
-            // Act: Trigger the fake object to execute event invocation
-            //_fakeTransponderReceiver.TransponderDataReady += Raise.EventWith(this, new RawTransponderDataEventArgs(testData));
+            DateTime date3 = new DateTime(2015, 10, 06, 21, 39, 02, 999);
+            FormattedData value3 = new FormattedData("ATR423", 19045, 12932, 34000, date3, "", 0);
+            _formatter.FormattedDataReady
+                += Raise.EventWith(this, new FormattedDataEventArgs(value3));
 
             Assert.That(_seperationCalculator.GetAircraftList().Count == 2);
         }
@@ -121,61 +104,40 @@ namespace ATM_UnitTest
         public void TestReception_InputThroughTransponderAirplaneInConflict_ExpectedTrue()
         {
             // Setup test data
-            FormattedData result = null;
-            List<string>
-                testData =
-                    new List<string>(); // Creates list with manual value that is send through trigger from TransponderData to Formatter.
-            string test1 = "ATR423;39045;12932;14000;20151006213456789";
-            testData.Add(test1);
+            DateTime date = new DateTime(2015, 10, 06, 21, 34, 56, 789);
+            FormattedData value = new FormattedData("PPL120", 29045, 22932, 24000, date, "", 0);
+            _formatter.FormattedDataReady
+                += Raise.EventWith(this, new FormattedDataEventArgs(value));
 
-            string test2 = "PPL120;29045;22932;24000;20151006213456888";
-            testData.Add(test2);
+            DateTime date2 = new DateTime(2015, 10, 06, 21, 34, 56, 780);
+            FormattedData value2 = new FormattedData("ATR423", 39045, 12932, 14000, date2, "", 0);
+            _formatter.FormattedDataReady
+                += Raise.EventWith(this, new FormattedDataEventArgs(value2));
 
-            string test3 = "QQL123; 35045; 137932; 15800; 20151006213999999";
-            testData.Add(test3);
+            DateTime date3 = new DateTime(2015, 10, 06, 21, 39, 02, 999);
+            FormattedData value3 = new FormattedData("QUR421", 35045, 12932, 14200, date3, "", 0);
 
-            _formatter.FormattedDataReady += (o, e) =>
-            {
-                result = e.FormattedData;
-            }; //Simulates formatted data ready event
-
-            // Act: Trigger the fake object to execute event invocation
-            //_fakeTransponderReceiver.TransponderDataReady += Raise.EventWith(this, new RawTransponderDataEventArgs(testData));
-
-            FormattedData test3_formatted = _formatter.FormatData(test3);
-
-            Assert.That(_seperationCalculator.IsThereConflict(test3_formatted)==true);
+            Assert.That(_seperationCalculator.IsThereConflict(value3)==true);
         }
 
-        //[Test]
-        //public void TestReception_InputThroughTransponderAirplaneInConflictHorizontal_ExpectedFalse()
-        //{
-        //    // Setup test data
-        //    FormattedData result = null;
-        //    List<string>
-        //        testData =
-        //            new List<string>(); // Creates list with manual value that is send through trigger from TransponderData to Formatter.
-        //    string test1 = "ATR423;50000;50000;50000;20151006213456789";
-        //    testData.Add(test1);
+        [Test]
+        public void TestReception_InputThroughTransponderAirplaneInConflictHorizontal_ExpectedFalse()
+        {
+            DateTime date = new DateTime(2015, 10, 06, 21, 34, 56, 789);
+            FormattedData value = new FormattedData("PPL120", 29045, 22932, 24000, date, "", 0);
+            _formatter.FormattedDataReady
+                += Raise.EventWith(this, new FormattedDataEventArgs(value));
 
-        //    string test2 = "PPL120;10000;10000;24000;20151006213456888";
-        //    testData.Add(test2);
+            DateTime date2 = new DateTime(2015, 10, 06, 21, 34, 56, 780);
+            FormattedData value2 = new FormattedData("ATR423", 39045, 12932, 14000, date2, "", 0);
+            _formatter.FormattedDataReady
+                += Raise.EventWith(this, new FormattedDataEventArgs(value2));
 
+            DateTime date3 = new DateTime(2015, 10, 06, 21, 39, 02, 999);
+            FormattedData value3 = new FormattedData("QUR421", 47045, 12932, 16000, date3, "", 0);
 
-        //    _formatter.FormattedDataReady += (o, e) =>
-        //    {
-        //        result = e.FormattedData;
-        //    }; //Simulates formatted data ready event
-
-        //    // Act: Trigger the fake object to execute event invocation
-        //    _formatter.FormattedDataReady
-        //        += Raise.EventWith(this, new FormattedDataEventArgs(testData));
-
-        //    string test3 = "QQL123;13000; 30000; 30800; 20151006213999999";
-        //    FormattedData test3Formatted = _formatter.FormatData(test3);
-
-        //    Assert.That(_seperationCalculator.IsThereConflict(test3Formatted) == false);
-        //}
+            Assert.That(_seperationCalculator.IsThereConflict(value3) == false);
+        }
 
         [Test]
         public void TestReception_InputThroughTransponderAirplaneInConflictVertical_ExpectedFalse()
@@ -211,28 +173,22 @@ namespace ATM_UnitTest
         {
             // Setup test data
             FormattedData result = null;
-            List<string>
-                testData =
-                    new List<string>(); // Creates list with manual value that is send through trigger from TransponderData to Formatter.
-            string test1 = "ATR423;50000;50000;50000;20151006213456789";
-            testData.Add(test1);
+            //List<string>
+            //    testData =
+            //        new List<string>(); // Creates list with manual value that is send through trigger from TransponderData to Formatter.
+            //string test1 = "ATR423;50000;50000;50000;20151006213456789";
+            //testData.Add(test1);
 
-            string test2 = "PPL120;10000;10000;24000;20151006213456888";
-            testData.Add(test2);
+            //string test2 = "PPL120;10000;10000;24000;20151006213456888";
+            //testData.Add(test2);
 
-
-            _formatter.FormattedDataReady += (o, e) =>
-            {
-                result = e.FormattedData;
-            }; //Simulates formatted data ready event
+            DateTime date = new DateTime(2015, 10, 06, 21, 34, 56, 780);
+            FormattedData value = new FormattedData("ATR423", 39045, 12932, 14000, date, "", 0);
 
             // Act: Trigger the fake object to execute event invocation
-            //_fakeTransponderReceiver.TransponderDataReady += Raise.EventWith(this, new RawTransponderDataEventArgs(testData));
+            _formatter.FormattedDataReady += Raise.EventWith(this, new FormattedDataEventArgs(value));
 
-            string test3 = "ATR423;51000; 53000; 50100; 20151006213999999";
-            FormattedData test3Formatted = _formatter.FormatData(test3);
-
-            Assert.That(_seperationCalculator.IsThereConflict(test3Formatted) == false);
+            Assert.That(_seperationCalculator.IsThereConflict(value) == false);
         }
 
 

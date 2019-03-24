@@ -29,7 +29,7 @@ namespace ATM_UnitTest
         [Test]
         public void FormatData_Tag_ManualInputTest_ExpectedTrue()
         {
-            string data = "MAT218;1000;20000;10000;2019070312061010123";
+            string data = "MAT218;1000;20000;10000;20190703120610123";
             FormattedData result =_uut.FormatData(data);
             Assert.AreEqual(result.Tag, "MAT218");
         }
@@ -49,12 +49,14 @@ namespace ATM_UnitTest
             _fakeTransponderReceiver.TransponderDataReady
                += Raise.EventWith(this, new RawTransponderDataEventArgs(testData));
 
+            DateTime date = new DateTime(2015,10,06,21,34,56,789);
+
             // Assert that result and expected are equal
             Assert.AreEqual(result.Tag, "ATR423");
             Assert.AreEqual(result.XCoordinate, 39045);
             Assert.AreEqual(result.YCoordinate, 12932);
             Assert.AreEqual(result.Altitude, 14000);
-            Assert.AreEqual(result.TimeStamp, 20151006213456789);
+            Assert.AreEqual(result.TimeStamp, date);
             Assert.AreEqual(result.CompassCourse,"");
             Assert.AreEqual(result.Speed,0);
         }

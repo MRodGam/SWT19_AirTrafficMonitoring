@@ -10,7 +10,7 @@ namespace ATM
     {
         public void PrintData(List<FormattedData> aircrafts, List<Conflict> conflicts)
         {
-            Console.Clear();
+            // Console.Clear();
 
             foreach (var aircraft in aircrafts)
             {
