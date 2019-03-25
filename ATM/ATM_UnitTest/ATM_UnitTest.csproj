@@ -60,6 +60,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AirTrafficController\FakeClear.cs" />
+    <Compile Include="AirTrafficController\FakeLog.cs" />
     <Compile Include="Log\Add_andLog.cs" />
     <Compile Include="Log\Add_Remove.cs" />
     <Compile Include="AirTrafficController\HandleNewData.cs" />

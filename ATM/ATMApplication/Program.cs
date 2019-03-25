@@ -23,11 +23,12 @@ namespace ATMApplication
 
             var speed = new SpeedCalculator();
             var position = new PositionCalculator();
-            var render = new RenderData();
+            var clear = new ClearConsole();
+            var render = new RenderData(clear);
             var writer = new LogWriter();
             var log = new Log(writer);
             var seperation = new SeperationCalculator(log);
-            var system = new AirTrafficController(formatter,seperation, render, position,speed);
+            var system = new AirTrafficController(formatter,seperation, render, position,speed,clear);
 
             // Let the real TDR execute in the background
             while (true)

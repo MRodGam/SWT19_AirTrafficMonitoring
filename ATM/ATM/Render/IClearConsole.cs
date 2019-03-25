@@ -8,6 +8,6 @@ namespace ATM
 {
     public interface IClearConsole
     {
-        void ClearConsole();
+        void Clear();
     }
 }

@@ -27,15 +27,23 @@ namespace ATM
 
         public void Remove(FormattedData airplane)
         {
-            foreach (Conflict conflict in GetConflictList())
+            if (GetConflictList() != null)
             {
-                if (conflict.tag1==airplane.Tag || conflict.tag2 == airplane.Tag)
+                foreach (Conflict conflict in GetConflictList())
                 {
-                    conflictToRemove = conflict;
+                    if (conflict.tag1 == airplane.Tag || conflict.tag2 == airplane.Tag)
+                    {
+                        conflictToRemove = conflict;
+                    }
                 }
-            }
 
-            currentConflicts.Remove(conflictToRemove);
+                currentConflicts.Remove(conflictToRemove);
+            }
+            else
+            {
+                
+            }
+            
         }
 
         public List<Conflict> GetConflictList()

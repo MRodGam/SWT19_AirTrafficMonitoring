@@ -62,12 +62,12 @@ namespace ATM
                 {
                     result = true;
                     aircraftInConflict = aircraft;
-                    //_log.Add(aircraft,currentData);
+                    _log.Add(aircraft,currentData);
 
                 }
                 else
                 {
-                    //_log.Remove(currentData);
+                    _log.Remove(currentData);
                 }
             }
 

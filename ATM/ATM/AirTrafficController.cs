@@ -14,14 +14,14 @@ namespace ATM
         private IPositionCalculator _positionCalculator;
         private ISpeedCalculator _speedCalculator;
         private IRender _render;
+        private IClearConsole _clear;
 
         public FormattedData CurrentData;
         public FormattedData oldData { get; private set; }
 
         public bool IsThereConflicts = false;
 
-        public AirTrafficController(IFormatter receiver, ISeperationCalculator seperationCalculator, IRender render, IPositionCalculator positionCalculator, ISpeedCalculator speedCalculator)
-
+        public AirTrafficController(IFormatter receiver, ISeperationCalculator seperationCalculator, IRender render, IPositionCalculator positionCalculator, ISpeedCalculator speedCalculator, IClearConsole console)
         {
             // This will store the real or the fake transponder data receiver
             this.receiver = receiver;
@@ -33,6 +33,7 @@ namespace ATM
             _positionCalculator = positionCalculator;
             _speedCalculator = speedCalculator;
             _render = render;
+            _clear = console;
         }
 
         public void ReceiverOnFormattedDataReady(object sender, FormattedDataEventArgs e)
@@ -63,15 +64,17 @@ namespace ATM
                 {
                     IsThereConflicts = true;
 
-                    _render = new RenderWithSeperation();
-                    _render.PrintData(_seperationCalculator.GetAircraftList(), _seperationCalculator.GetConflicts());
+                    _render = new RenderWithSeperation(_clear);
+                    _render.PrintData(_seperationCalculator.GetAircraftList(),
+                        _seperationCalculator.GetConflicts());
                 }
                 else
                 {
                     IsThereConflicts = false;
 
-                    _render = new RenderData();
-                    _render.PrintData(_seperationCalculator.GetAircraftList(),_seperationCalculator.GetConflicts());
+                    _render = new RenderData(_clear);
+                    _render.PrintData(_seperationCalculator.GetAircraftList(),
+                        _seperationCalculator.GetConflicts());
                 }
             }
             else
@@ -82,13 +85,13 @@ namespace ATM
                 if (_seperationCalculator.IsThereConflict(currentData) == true)
                 {
                     IsThereConflicts = true;
-                    _render = new RenderWithSeperation();
+                    _render = new RenderWithSeperation(_clear);
                     _render.PrintData(_seperationCalculator.GetAircraftList(), _seperationCalculator.GetConflicts());
                 }
                 else
                 {
                     IsThereConflicts = false;
-                    _render = new RenderData();
+                    _render = new RenderData(_clear);
                     _render.PrintData(_seperationCalculator.GetAircraftList(), _seperationCalculator.GetConflicts());
                 }
             }

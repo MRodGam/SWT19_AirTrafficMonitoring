@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ATM;
 
-namespace ATM
+namespace ATM_UnitTest
 {
-    public class ClearConsole : IClearConsole
+    class FakeClear : IClearConsole
     {
+        public bool wasClearConsoleCalled = false;
+
         public void Clear()
         {
-            Console.Clear();
+            wasClearConsoleCalled = true;
         }
     }
 }
