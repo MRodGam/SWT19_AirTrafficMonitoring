@@ -22,7 +22,7 @@ namespace ATM_UnitTest.Speed
         }
 
         [Test]
-        public void Speed_ExpectedTrue_AfterOneMinute()
+        public void Speed_ExpectedTrue_OneMinute()
         {
             DateTime dateTime1 = new DateTime(2019, 03, 24, 21, 48, 20, 034);
             DateTime dateTime2 = new DateTime(2019, 03, 24, 21, 47, 20, 034);
@@ -40,7 +40,7 @@ namespace ATM_UnitTest.Speed
         }
 
         [Test]
-        public void Speed_ExpectedTrue_AfterTenMinutes()
+        public void Speed_ExpectedTrue_TenMinutes()
         {
             
             DateTime dateTime1 = new DateTime(2019, 03, 24, 21, 48, 20, 034);
