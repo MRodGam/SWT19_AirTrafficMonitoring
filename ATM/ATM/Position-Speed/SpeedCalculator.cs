@@ -22,7 +22,8 @@ namespace ATM
 
         public double CalculateHours(FormattedData currentData, FormattedData oldData)
         {
-            double difference = (currentData.TimeStamp- oldData.TimeStamp).TotalSeconds;
+            double difference = (currentData.TimeStamp- oldData.TimeStamp).TotalSeconds;     
+           
 
             //double dif = Convert.ToDouble(difference);
 

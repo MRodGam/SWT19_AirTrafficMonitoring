@@ -59,6 +59,25 @@ namespace ATM_UnitTest.Speed
       
         }
         [Test]
+        public void Speed_ExpectedTrue_OneHour()
+        {
+
+            DateTime dateTime1 = new DateTime(2019, 03, 24, 22, 48, 20, 034);
+            DateTime dateTime2 = new DateTime(2019, 03, 24, 21, 48, 20, 034);
+
+            FormattedData currentData = new FormattedData("Current data", 300000, 300000, 300000, dateTime1, "South", 0);
+            FormattedData oldData = new FormattedData("Old data", 0, 0, 0, dateTime2, "South", 0);
+
+            double expected = 144.338;
+
+            double actual = _uut.CalculateSpeed(currentData, oldData);
+
+            Assert.AreEqual(expected, actual);
+
+            //Assert.AreEqual(_uut.CalculateSpeed(currentData, oldData), 0);
+
+        }
+        [Test]
         public void CalculateHours_ExpectedMinuteInSecondsTrue()
         {
 
@@ -77,7 +96,7 @@ namespace ATM_UnitTest.Speed
             
         }
         [Test]
-        public void CalculateHours_Expected10MinutesTrue()
+        public void CalculateHours_TenMinutesInSeconds_ExpectedTrue()
         {
 
             DateTime dateTime1 = new DateTime(2019, 03, 24, 21, 48, 20, 034);
@@ -95,7 +114,7 @@ namespace ATM_UnitTest.Speed
 
         }
         [Test]
-        public void CalculateHours_ExpectedHourInMinutesTrue()
+        public void CalculateHours_ExpectedHourInSecondsTrue()
         {
 
             DateTime dateTime1 = new DateTime(2019, 03, 24, 22, 48, 20, 034);
