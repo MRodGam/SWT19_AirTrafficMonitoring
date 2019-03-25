@@ -28,9 +28,9 @@ namespace ATM_UnitTest.Speed
             DateTime dateTime2 = new DateTime(2019, 03, 24, 21, 47, 20, 034);
 
             FormattedData currentData = new FormattedData("Current data", 20000, 1000, 2000, dateTime1, "South", 0);
-            FormattedData oldData = new FormattedData("Old data", 150, 50, 75, dateTime2, "South", 0);
+            FormattedData oldData = new FormattedData("Old data", 150, 50, 500, dateTime2, "South", 0);
             
-            double expected = 332.762;
+            double expected = 332.154;
 
             double actual = _uut.CalculateSpeed(currentData, oldData);
 
@@ -46,10 +46,10 @@ namespace ATM_UnitTest.Speed
             DateTime dateTime1 = new DateTime(2019, 03, 24, 21, 48, 20, 034);
             DateTime dateTime2 = new DateTime(2019, 03, 24, 21, 38, 20, 034);
 
-            FormattedData currentData = new FormattedData("Current data", 300000, 200000, 50000, dateTime1, "South", 0);
+            FormattedData currentData = new FormattedData("Current data", 300000, 200000, 20000, dateTime1, "South", 0);
             FormattedData oldData = new FormattedData("Old data", 1000, 10000, 10000, dateTime2, "South", 0);
 
-            double expected = 594.187;
+            double expected = 590.671;
 
             double actual = _uut.CalculateSpeed(currentData, oldData);
 
@@ -65,10 +65,10 @@ namespace ATM_UnitTest.Speed
             DateTime dateTime1 = new DateTime(2019, 03, 24, 22, 48, 20, 034);
             DateTime dateTime2 = new DateTime(2019, 03, 24, 21, 48, 20, 034);
 
-            FormattedData currentData = new FormattedData("Current data", 300000, 300000, 300000, dateTime1, "South", 0);
-            FormattedData oldData = new FormattedData("Old data", 0, 0, 0, dateTime2, "South", 0);
+            FormattedData currentData = new FormattedData("Current data", 300000, 300000, 2000, dateTime1, "South", 0);
+            FormattedData oldData = new FormattedData("Old data", 0, 0, 500, dateTime2, "South", 0);
 
-            double expected = 144.338;
+            double expected = 117.852;
 
             double actual = _uut.CalculateSpeed(currentData, oldData);
 
