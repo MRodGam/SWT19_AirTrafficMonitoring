@@ -17,12 +17,13 @@ namespace ATM
                                         Math.Pow((currentData.Altitude - oldData.Altitude), 2)));
             double time = CalculateHours(currentData, oldData);
 
-            return distance / time;
+            return Math.Round((distance / time),3);
         }
 
         public double CalculateHours(FormattedData currentData, FormattedData oldData)
         {
-            double difference = (currentData.TimeStamp- oldData.TimeStamp).TotalSeconds;
+            double difference = (currentData.TimeStamp- oldData.TimeStamp).TotalSeconds;     
+           
 
             //double dif = Convert.ToDouble(difference);
 
