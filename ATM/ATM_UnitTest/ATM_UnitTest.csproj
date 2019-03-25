@@ -70,7 +70,7 @@
     <Compile Include="Formatter\FormatData.cs" />
     <Compile Include="SeperationCalculator\GetList_Add_Remove.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Speed\CalculateSpeed.cs" />
+    <Compile Include="Speed\SpeedCalculator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
